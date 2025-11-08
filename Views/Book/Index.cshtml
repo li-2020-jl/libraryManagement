@@ -5,19 +5,22 @@
     var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 }
 
-<h1>📚 Book List</h1>
+<h1><i data-lucide="book-open"></i> Book List</h1>
 
 <!-- Search -->
 <form asp-action="Index" method="get" style="margin-bottom: 1.5rem;">
-    <input type="text"
-           name="search"
-           placeholder="🔍 Search by book title"
-           value="@ViewBag.Search"
-           style="padding: 8px 14px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 300px;" />
-    <button type="submit" class="btn btn-outline">Search</button>
+    <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-lucide="search" style="color: #6b7280;"></i>
+        <input type="text"
+               name="search"
+               placeholder="Search by book title"
+               value="@ViewBag.Search"
+               style="padding: 8px 14px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 300px;" />
+        <button type="submit" class="btn btn-outline"><i data-lucide="search"></i> Search</button>
+    </div>
 </form>
 
-<a asp-action="Create" class="btn btn-secondary" style="margin-bottom: 1rem;">➕ Add New Book</a>
+<a asp-action="Create" class="btn btn-secondary" style="margin-bottom: 1rem;"><i data-lucide="plus-circle"></i> Add New Book</a>
 
 <div class="markdown-table-container">
     <table class="markdown-table">
@@ -44,11 +47,15 @@
                     <td>
                         @if (string.IsNullOrEmpty(book.CustomerId))
                         {
-                            <span class="text-success">✅ Available</span>
+                            <span class="status-available">
+                                <i data-lucide="check-circle"></i> Available
+                            </span>
                         }
                         else
                         {
-                            <span class="text-error">Checked out by @book.BorrowerName</span>
+                            <span class="status-checked-out">
+                                <i data-lucide="clock"></i> Checked out by @book.BorrowerName
+                            </span>
                         }
                     </td>
                     <td>
@@ -60,7 +67,7 @@
                                 <form asp-action="Checkout" method="post" style="display: inline-block;">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
-                                    <button type="submit" class="btn btn-blue">Borrow</button>
+                                    <button type="submit" class="btn btn-blue"><i data-lucide="book-plus"></i> Borrow</button>
                                 </form>
                             }
                             else if (book.CustomerId == currentUserId)
@@ -69,7 +76,7 @@
                                 <form asp-action="ReturnBook" method="post" style="display: inline-block;">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
-                                    <button type="submit" class="btn btn-warning" style="color: white;">Return</button>
+                                    <button type="submit" class="btn btn-warning" style="color: white;"><i data-lucide="book-minus"></i> Return</button>
                                 </form>
                             }
                         }

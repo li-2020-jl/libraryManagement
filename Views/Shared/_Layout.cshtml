@@ -15,6 +15,9 @@
 
     <!-- GitHub Markdown (optional) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css" />
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -38,8 +41,9 @@
                 <div style="display: flex; align-items: center; gap: 12px;">
                     @if (User.Identity != null && User.Identity.IsAuthenticated)
                     {
-                        <span style="color: white; font-weight: 600;">
-                            👤 @(User.Identity?.Name ?? User.FindFirst("email")?.Value)
+                        <span style="color: white; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+                            <i data-lucide="user"></i>
+                            @(User.Identity?.Name ?? User.FindFirst("email")?.Value)
                         </span>
 
                         <!-- My Profile Link -->
@@ -94,6 +98,13 @@
                 window.location.href = `/Account/Profile?returnUrl=${encodeURIComponent(currentUrl)}`;
             });
         }
+    </script>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)
