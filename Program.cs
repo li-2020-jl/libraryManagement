@@ -39,18 +39,36 @@ builder.Services.AddIdentity<Customer, IdentityRole>(options =>
 .AddEntityFrameworkStores<AppDbContext>()
 .AddDefaultTokenProviders();
 
-// 3rd party login(Google + GitHub）
-builder.Services.AddAuthentication()
-    .AddGoogle(options =>
+// 3rd party login(Google + GitHub) - only configure if valid credentials are provided
+var authBuilder = builder.Services.AddAuthentication();
+
+var googleClientId = builder.Configuration["Authentication:Google:ClientId"];
+var googleClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+if (!string.IsNullOrEmpty(googleClientId) && 
+    !string.IsNullOrEmpty(googleClientSecret) &&
+    googleClientId != "YOUR_GOOGLE_CLIENT_ID" &&
+    googleClientSecret != "YOUR_GOOGLE_CLIENT_SECRET")
+{
+    authBuilder.AddGoogle(options =>
     {
-        options.ClientId = builder.Configuration["Authentication:Google:ClientId"]!;
-        options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!;
-    })
-    .AddGitHub(options =>
-    {
-        options.ClientId = builder.Configuration["Authentication:GitHub:ClientId"]!;
-        options.ClientSecret = builder.Configuration["Authentication:GitHub:ClientSecret"]!;
+        options.ClientId = googleClientId;
+        options.ClientSecret = googleClientSecret;
     });
+}
+
+var githubClientId = builder.Configuration["Authentication:GitHub:ClientId"];
+var githubClientSecret = builder.Configuration["Authentication:GitHub:ClientSecret"];
+if (!string.IsNullOrEmpty(githubClientId) && 
+    !string.IsNullOrEmpty(githubClientSecret) &&
+    githubClientId != "YOUR_GITHUB_CLIENT_ID" &&
+    githubClientSecret != "YOUR_GITHUB_CLIENT_SECRET")
+{
+    authBuilder.AddGitHub(options =>
+    {
+        options.ClientId = githubClientId;
+        options.ClientSecret = githubClientSecret;
+    });
+}
 
 var app = builder.Build();
 
