@@ -3,7 +3,7 @@
     Layout = "_Layout";
 }
 
-<h2>Edit Branch</h2>
+<h2><i data-lucide="edit"></i> Edit Branch</h2>
 
 <form asp-action="Edit" method="post" style="max-width: 500px; margin-top: 1rem;">
     <input type="hidden" asp-for="LibraryBranchId" />
@@ -14,6 +14,6 @@
         <span asp-validation-for="BranchName" class="text-error"></span>
     </div>
 
-    <button type="submit" class="btn btn-blue">Save</button>
-    <a href="@Url.Action("Index")" class="btn btn-secondary" style="margin-left: 0.75rem;">Cancel</a>
+    <button type="submit" class="btn btn-blue"><i data-lucide="save"></i> Save</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary" style="margin-left: 0.75rem;"><i data-lucide="x"></i> Cancel</a>
 </form>

@@ -3,7 +3,7 @@
     Layout = "_Layout";
 }
 
-<h2>Add New Customer</h2>
+<h2><i data-lucide="user-plus"></i> Add New Customer</h2>
 
 <form asp-action="Create" method="post" style="max-width: 500px; margin-top: 1rem;" class="markdown-body">
     <div>
@@ -22,7 +22,7 @@
     </div>
 
     <div style="margin-top: 1rem;">
-        <button type="submit" class="btn btn-blue">Save</button>
-        <a asp-action="Index" class="btn btn-secondary" style="margin-left: 0.5rem;">Cancel</a>
+        <button type="submit" class="btn btn-blue"><i data-lucide="save"></i> Save</button>
+        <a asp-action="Index" class="btn btn-secondary" style="margin-left: 0.5rem;"><i data-lucide="x"></i> Cancel</a>
     </div>
 </form>

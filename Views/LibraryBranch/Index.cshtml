@@ -3,22 +3,25 @@
     Layout = "_Layout";
 }
 
-<h1>🏛️ Library Branches</h1>
+<h1><i data-lucide="building-2"></i> Library Branches</h1>
 
 <!-- Search -->
 <form asp-action="Index" method="get" style="margin-bottom: 1.5rem;">
-    <input type="text"
-           name="search"
-           placeholder="🔍 Search by branch name"
-           value="@ViewBag.Search"
-           style="padding: 8px 14px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 300px;" />
-    <button type="submit" class="btn btn-outline">Search</button>
+    <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-lucide="search" style="color: #6b7280;"></i>
+        <input type="text"
+               name="search"
+               placeholder="Search by branch name"
+               value="@ViewBag.Search"
+               style="padding: 8px 14px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 300px;" />
+        <button type="submit" class="btn btn-outline"><i data-lucide="search"></i> Search</button>
+    </div>
 </form>
 
 <!-- Add Button Section -->
 <div class="row" style="margin-top: 1.5rem;">
     <div class="col-12">
-        <a asp-action="Create" class="btn btn-secondary">➕ Add New Branch</a>
+        <a asp-action="Create" class="btn btn-secondary"><i data-lucide="plus-circle"></i> Add New Branch</a>
     </div>
 </div>
 
@@ -41,8 +44,8 @@
                             <td>@branch.LibraryBranchId</td>
                             <td>@branch.BranchName</td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@branch.LibraryBranchId" class="btn btn-blue">Edit</a>
-                                <a asp-action="Delete" asp-route-id="@branch.LibraryBranchId" class="btn btn-danger">Delete</a>
+                                <a asp-action="Edit" asp-route-id="@branch.LibraryBranchId" class="btn btn-blue"><i data-lucide="edit"></i> Edit</a>
+                                <a asp-action="Delete" asp-route-id="@branch.LibraryBranchId" class="btn btn-danger"><i data-lucide="trash-2"></i> Delete</a>
                             </td>
                         </tr>
                     }

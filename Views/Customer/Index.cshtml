@@ -6,7 +6,7 @@
     var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 }
 
-<h1>👤 Customer List</h1>
+<h1><i data-lucide="users"></i> Customer List</h1>
 
 <div class="markdown-table-container">
     <table class="markdown-table">
@@ -37,15 +37,15 @@
                     </td>
                     <td>
                         <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn btn-warning">
-                            @(isCurrentUser ? "Return Books" : "View Books")
+                            <i data-lucide="@(isCurrentUser ? "book-minus" : "eye")"></i> @(isCurrentUser ? "Return Books" : "View Books")
                         </a>
                         @if (isCurrentUser)
                         {
                             <a asp-action="Edit" 
                                 asp-route-id="@customer.CustomerId" 
                                 asp-route-returnUrl="@Url.Action("Index", "Customer")"
-                                class="btn btn-blue">Edit</a>
-                            <a asp-action="Delete" asp-route-id="@customer.CustomerId" class="btn btn-danger">Delete</a>
+                                class="btn btn-blue"><i data-lucide="edit"></i> Edit</a>
+                            <a asp-action="Delete" asp-route-id="@customer.CustomerId" class="btn btn-danger"><i data-lucide="trash-2"></i> Delete</a>
                         }
                     </td>
                 </tr>

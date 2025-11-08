@@ -3,7 +3,7 @@
     Layout = "_Layout";
 }
 
-<h2>Add New Library Branch</h2>
+<h2><i data-lucide="plus-circle"></i> Add New Library Branch</h2>
 
 <form asp-action="Create" method="post" style="max-width: 500px; margin-top: 1rem;">
     <div style="margin-bottom: 1rem;">
@@ -11,6 +11,6 @@
         <input asp-for="BranchName" type="text" required />
     </div>
 
-    <button type="submit" class="btn btn-blue">💾 Save</button>
-    <a asp-action="Index" class="btn btn-secondary" style="margin-left: 0.5rem;">Cancel</a>
+    <button type="submit" class="btn btn-blue"><i data-lucide="save"></i> Save</button>
+    <a asp-action="Index" class="btn btn-secondary" style="margin-left: 0.5rem;"><i data-lucide="x"></i> Cancel</a>
 </form>

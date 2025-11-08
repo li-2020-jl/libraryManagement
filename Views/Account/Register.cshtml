@@ -3,7 +3,7 @@
     Layout = "_Layout";
 }
 
-<h2 style="margin-bottom: 1.5rem;">📝 Register</h2>
+<h2 style="margin-bottom: 1.5rem;"><i data-lucide="user-plus"></i> Register</h2>
 
 <form method="post" style="max-width: 500px;">
     <div style="margin-bottom: 1rem;">
@@ -36,7 +36,7 @@
         <span asp-validation-for="PhoneNumber" class="text-error"></span>
     </div>
 
-    <button type="submit" class="btn btn-blue">Register</button>
+    <button type="submit" class="btn btn-blue"><i data-lucide="user-plus"></i> Register</button>
 </form>
 
 <hr style="margin: 2rem 0;" />
@@ -50,6 +50,6 @@
 </div>
 
 <form method="post" asp-action="ExternalLogin">
-    <button type="submit" name="provider" value="Google" class="btn" style="background-color: #acbfff;">Register with Google</button>
-    <button type="submit" name="provider" value="GitHub" class="btn" style="background-color: #aae0ff; margin-left: 0.5rem;">Register with GitHub</button>
+    <button type="submit" name="provider" value="Google" class="btn" style="background-color: #acbfff;"><i data-lucide="mail"></i> Register with Google</button>
+    <button type="submit" name="provider" value="GitHub" class="btn" style="background-color: #aae0ff; margin-left: 0.5rem;"><i data-lucide="github"></i> Register with GitHub</button>
 </form>

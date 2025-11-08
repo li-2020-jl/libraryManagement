@@ -3,11 +3,11 @@
     Layout = "_Layout";
 }
 
-<h2>Delete Branch</h2>
+<h2><i data-lucide="alert-circle"></i> Delete Branch</h2>
 
 <!-- warning message -->
 <p class="error-message">
-    🚨 Are you sure you want to delete this branch? 🚨
+    <i data-lucide="alert-triangle"></i> Are you sure you want to delete this branch?
 </p>
 
 <!-- branch info -->
@@ -24,7 +24,7 @@
             <input asp-for="BranchName" type="text" readonly />
         </div>
 
-        <button type="submit" class="btn btn-warning" style="color: white;">Yes, Delete</button>
-        <a href="@Url.Action("Index")" class="btn btn-secondary" style="margin-left: 0.75rem;">Cancel</a>
+        <button type="submit" class="btn btn-danger"><i data-lucide="trash-2"></i> Yes, Delete</button>
+        <a href="@Url.Action("Index")" class="btn btn-secondary" style="margin-left: 0.75rem;"><i data-lucide="x"></i> Cancel</a>
     </form>
 </div>

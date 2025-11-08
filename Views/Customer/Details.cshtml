@@ -7,7 +7,7 @@
     bool isCurrentUser = Model.CustomerId == currentUserId;
 }
 
-<h2>📚 Borrowed Books - @Model.Name</h2>
+<h2><i data-lucide="book-open"></i> Borrowed Books - @Model.Name</h2>
 
 @if (!Model.BorrowedBooks.Any())
 {
@@ -40,7 +40,7 @@ else
                                 <form asp-action="ReturnBook" method="post" style="margin: 0;">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
-                                    <button type="submit" class="btn btn-warning">Return</button>
+                                    <button type="submit" class="btn btn-warning"><i data-lucide="book-minus"></i> Return</button>
                                 </form>
                             }
                             else
@@ -55,4 +55,4 @@ else
     </div>
 }
 
-<a asp-action="Index" class="btn btn-secondary" style="margin-top: 1rem;">⬅ Back to Customers</a>
+<a asp-action="Index" class="btn btn-secondary" style="margin-top: 1rem;"><i data-lucide="arrow-left"></i> Back to Customers</a>

@@ -3,7 +3,7 @@
     Layout = "_Layout";
 }
 
-<h1>📖 Books by @ViewBag.AuthorName</h1>
+<h1><i data-lucide="book-open"></i> Books by @ViewBag.AuthorName</h1>
 
 <div class="markdown-table-container">
     <table class="markdown-table">
@@ -23,11 +23,15 @@
                     <td>
                         @if (string.IsNullOrEmpty(book.CustomerId))
                         {
-                            <span class="text-success">✅ Available</span>
+                            <span class="status-available">
+                                <i data-lucide="check-circle"></i> Available
+                            </span>
                         }
                         else
                         {
-                            <span class="text-error">Checked out by @book.BorrowerName</span>
+                            <span class="status-checked-out">
+                                <i data-lucide="clock"></i> Checked out by @book.BorrowerName
+                            </span>
                         }
                     </td>
                 </tr>
@@ -36,4 +40,4 @@
     </table>
 </div>
 
-<a href="/Author" class="btn btn-secondary">← Back to Authors List</a>
+<a href="/Author" class="btn btn-secondary"><i data-lucide="arrow-left"></i> Back to Authors List</a>

@@ -3,7 +3,7 @@
     Layout = "_Layout";
 }
 
-<h2>👤 Edit Profile</h2>
+<h2><i data-lucide="user-circle"></i> Edit Profile</h2>
 
 <form asp-controller="Customer" 
         asp-action="Edit" 
@@ -31,8 +31,8 @@
         <span asp-validation-for="Phone" class="text-error"></span>
     </div>
 
-    <button type="submit" class="btn btn-blue">Save Changes</button>
+    <button type="submit" class="btn btn-blue"><i data-lucide="save"></i> Save Changes</button>
     <a class="btn btn-secondary" 
        href="@(Model.ReturnUrl ?? Url.Action("Index", "Home"))" 
-       style="margin-left: 1rem;">Cancel</a>
+       style="margin-left: 1rem;"><i data-lucide="x"></i> Cancel</a>
 </form>

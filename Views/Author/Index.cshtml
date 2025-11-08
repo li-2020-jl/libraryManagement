@@ -3,16 +3,19 @@
     Layout = "_Layout";
 }
 
-<h1>📚 Authors List</h1>
+<h1><i data-lucide="users"></i> Authors List</h1>
 
 <!-- Search -->
 <form asp-action="Index" method="get" style="margin-bottom: 1.5rem;">
-    <input type="text"
-           name="search"
-           placeholder="🔍 Search by author name"
-           value="@ViewBag.Search"
-           style="padding: 8px 14px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 300px;" />
-    <button type="submit" class="btn btn-outline">Search</button>
+    <div style="display: flex; align-items: center; gap: 8px;">
+        <i data-lucide="search" style="color: #6b7280;"></i>
+        <input type="text"
+               name="search"
+               placeholder="Search by author name"
+               value="@ViewBag.Search"
+               style="padding: 8px 14px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 300px;" />
+        <button type="submit" class="btn btn-outline"><i data-lucide="search"></i> Search</button>
+    </div>
 </form>
 
 <!-- Table -->
