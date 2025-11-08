@@ -1,0 +1,41 @@
+@model LibraryManagement.ViewModels.BookViewModel
+@{
+    Layout = "_Layout";
+}
+
+<h2>➕ Add New Book</h2>
+
+<form asp-action="Create" method="post" style="max-width: 600px;">
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="Title"></label><br />
+        <input asp-for="Title" class="form-control" required />
+        <span asp-validation-for="Title" class="text-error"></span>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="AuthorId"></label><br />
+        <select asp-for="AuthorId" class="form-control" required>
+            <option value="">Select an Author</option>
+            @foreach (var author in ViewBag.Authors)
+            {
+                <option value="@author.AuthorId">@author.Name</option>
+            }
+        </select>
+        <span asp-validation-for="AuthorId" class="text-error"></span>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="LibraryBranchId"></label><br />
+        <select asp-for="LibraryBranchId" class="form-control" required>
+            <option value="">Select a Branch</option>
+            @foreach (var branch in ViewBag.Branches)
+            {
+                <option value="@branch.LibraryBranchId">@branch.BranchName</option>
+            }
+        </select>
+        <span asp-validation-for="LibraryBranchId" class="text-error"></span>
+    </div>
+
+    <button type="submit" class="btn btn-blue">Save</button>
+    <a asp-action="Index" class="btn btn-secondary" style="margin-left: 0.5rem;">Cancel</a>
+</form>

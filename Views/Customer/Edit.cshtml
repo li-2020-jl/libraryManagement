@@ -1,0 +1,38 @@
+@model LibraryManagement.ViewModels.CustomerViewModel
+@{
+    Layout = "_Layout";
+}
+
+<h2>👤 Edit Profile</h2>
+
+<form asp-controller="Customer" 
+        asp-action="Edit" 
+        asp-route-id="@Model.CustomerId" 
+        method="post" 
+        style="max-width: 500px; margin-top: 1rem;">
+    <input type="hidden" asp-for="CustomerId" />
+    <input type="hidden" asp-for="ReturnUrl" />
+
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="Name"></label><br />
+        <input asp-for="Name" type="text" required />
+        <span asp-validation-for="Name" class="text-error"></span>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" type="email" required />
+        <span asp-validation-for="Email" class="text-error"></span>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="Phone"></label><br />
+        <input asp-for="Phone" type="tel" required />
+        <span asp-validation-for="Phone" class="text-error"></span>
+    </div>
+
+    <button type="submit" class="btn btn-blue">Save Changes</button>
+    <a class="btn btn-secondary" 
+       href="@(Model.ReturnUrl ?? Url.Action("Index", "Home"))" 
+       style="margin-left: 1rem;">Cancel</a>
+</form>

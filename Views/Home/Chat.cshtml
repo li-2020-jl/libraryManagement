@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Reader's Chathub";
+    var username = ViewBag.Username;
+}
+
+<div class="content-wrapper">
+
+    <h2 style="font-size: 2rem; padding: 0 0 1rem 0; text-align: center;">
+        💬 Reader's Chathub
+    </h2>
+
+    <!-- current user -->
+    <div class="card" style="max-width: 700px; margin: 0 auto;">
+        <!-- the message -->
+        <div id="messages" style="height: 300px; overflow-y: auto; background-color: #1f2937; padding: 1rem; border-radius: 6px; border: 1px solid #30363d;">
+        </div>
+
+        <!-- input area -->
+        <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+            <input type="text" id="messageInput" placeholder="Input your message..." />
+            <button id="sendButton" class="btn btn-blue">Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- SignalR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+
+<script>
+    const username = "@username";
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/chathub")
+        .build();
+
+    connection.on("ReceiveMessage", function (user, message) {
+        const msg = document.createElement("div");
+        msg.innerHTML = `<strong>${user}</strong>: ${message}`;
+        document.getElementById("messages").appendChild(msg);
+        // auto roll to buttom
+        const messagesBox = document.getElementById("messages");
+        messagesBox.scrollTop = messagesBox.scrollHeight;
+    });
+
+    connection.start().catch(err => console.error(err.toString()));
+
+    document.getElementById("sendButton").addEventListener("click", function (event) {
+        const message = document.getElementById("messageInput").value;
+        if (message.trim() === "") return;
+        connection.invoke("SendMessage", username, message).catch(err => console.error(err.toString()));
+        document.getElementById("messageInput").value = "";
+        event.preventDefault();
+    });
+</script>

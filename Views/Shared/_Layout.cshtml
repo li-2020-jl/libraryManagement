@@ -1,0 +1,101 @@
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Library Management</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- GitHub Markdown (optional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-dark.min.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <!-- NAVIGATION BAR -->
+        <header>
+            <nav class="navbar">
+                <!-- Left Navigation Links -->
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <a asp-controller="Home" asp-action="Index" class="nav-link text-dark">Home</a>
+                    <a asp-controller="Book" asp-action="Index" class="nav-link text-dark">Books</a>
+                    <a asp-controller="Author" asp-action="Index" class="nav-link text-dark">Authors</a>
+                    <a asp-controller="Customer" asp-action="Index" class="nav-link text-dark">Customers</a>
+                    <a asp-controller="LibraryBranch" asp-action="Index" class="nav-link text-dark">Branches</a>
+                    <a asp-controller="Home" asp-action="Chat" class="nav-link text-dark">Reader's ChatHub</a>
+
+                    <a class="nav-link text-dark @(Context.Request.Path.StartsWithSegments("/swagger") ? "active" : "")"
+                    href="/swagger" target="_blank">Swagger</a>
+                </div>
+
+                <!-- Right Account Links -->
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <span style="color: white; font-weight: 600;">
+                            👤 @(User.Identity?.Name ?? User.FindFirst("email")?.Value)
+                        </span>
+
+                        <!-- My Profile Link -->
+                        <a asp-controller="Customer"
+                            asp-action="Edit"
+                            asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value"
+                            asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)"
+                            class="btn btn-secondary">
+                                My Profile
+                        </a>
+
+                        <a href="javascript:document.getElementById('logoutForm').submit();" class="btn btn-secondary">Logout</a>
+                        <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post" style="display: none;">
+                            @Html.AntiForgeryToken()
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Register"
+                        class="btn btn-secondary"
+                        style="padding: 8px 16px; border-radius: 8px; font-weight: 500;">
+                            Register
+                        </a>
+
+                        <a asp-controller="Account" asp-action="Login"
+                        class="btn btn-secondary"
+                        style="padding: 8px 16px; border-radius: 8px; font-weight: 500;">
+                            Login
+                        </a>
+                    }
+                </div>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="content-wrapper">
+            @RenderBody()
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="text-center">© 2025 - Library Management</div>
+        </footer>
+    </div>
+
+    <!-- JavaScript to dynamically redirect to Profile with returnUrl -->
+    <script>
+        const profileBtn = document.getElementById('profileLink');
+        if (profileBtn) {
+            profileBtn.addEventListener('click', () => {
+                const currentUrl = window.location.pathname + window.location.search;
+                window.location.href = `/Account/Profile?returnUrl=${encodeURIComponent(currentUrl)}`;
+            });
+        }
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

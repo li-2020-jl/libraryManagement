@@ -1,0 +1,58 @@
+@model LibraryManagement.ViewModels.CustomerDetailsViewModel
+@using System.Security.Claims;
+
+@{
+    Layout = "_Layout";
+    var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    bool isCurrentUser = Model.CustomerId == currentUserId;
+}
+
+<h2>📚 Borrowed Books - @Model.Name</h2>
+
+@if (!Model.BorrowedBooks.Any())
+{
+    <p>No borrowed books.</p>
+}
+else
+{
+    <div class="markdown-table-container">
+        <table class="markdown-table">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">Book ID</th>
+                    <th style="width: 30%;">Title</th>
+                    <th style="width: 20%;">Author</th>
+                    <th style="width: 25%;">Library Branch</th>
+                    <th style="width: 15%;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model.BorrowedBooks)
+                {
+                    <tr>
+                        <td>@book.BookId</td>
+                        <td>@book.Title</td>
+                        <td>@book.AuthorName</td>
+                        <td>@book.LibraryBranchName</td>
+                        <td>
+                            @if (isCurrentUser)
+                            {
+                                <form asp-action="ReturnBook" method="post" style="margin: 0;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="bookId" value="@book.BookId" />
+                                    <button type="submit" class="btn btn-warning">Return</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <span class="text-muted">N/A</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<a asp-action="Index" class="btn btn-secondary" style="margin-top: 1rem;">⬅ Back to Customers</a>

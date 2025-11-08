@@ -1,0 +1,81 @@
+@model List<LibraryManagement.ViewModels.BookViewModel>
+
+@{
+    Layout = "_Layout";
+    var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+}
+
+<h1>📚 Book List</h1>
+
+<!-- Search -->
+<form asp-action="Index" method="get" style="margin-bottom: 1.5rem;">
+    <input type="text"
+           name="search"
+           placeholder="🔍 Search by book title"
+           value="@ViewBag.Search"
+           style="padding: 8px 14px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 300px;" />
+    <button type="submit" class="btn btn-outline">Search</button>
+</form>
+
+<a asp-action="Create" class="btn btn-secondary" style="margin-bottom: 1rem;">➕ Add New Book</a>
+
+<div class="markdown-table-container">
+    <table class="markdown-table">
+        <thead>
+            <tr>
+                <th style="width: 8%;">Book ID</th>
+                <th style="width: 25%;">Title</th>
+                <th style="width: 20%;">Author</th>
+                <th style="width: 20%;">Library Branch</th>
+                <th style="width: 15%;">Status</th>
+                <th style="width: 12%;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                var isCheckedOut = !string.IsNullOrEmpty(book.CustomerId);
+
+                <tr>
+                    <td>@book.BookId</td>
+                    <td>@book.Title</td>
+                    <td>@book.AuthorName</td>
+                    <td>@book.LibraryBranchName</td>
+                    <td>
+                        @if (string.IsNullOrEmpty(book.CustomerId))
+                        {
+                            <span class="text-success">✅ Available</span>
+                        }
+                        else
+                        {
+                            <span class="text-error">Checked out by @book.BorrowerName</span>
+                        }
+                    </td>
+                    <td>
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            if (!isCheckedOut)
+                            {
+                                <!-- current user borrow -->
+                                <form asp-action="Checkout" method="post" style="display: inline-block;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="bookId" value="@book.BookId" />
+                                    <button type="submit" class="btn btn-blue">Borrow</button>
+                                </form>
+                            }
+                            else if (book.CustomerId == currentUserId)
+                            {
+                                <!-- current user return -->
+                                <form asp-action="ReturnBook" method="post" style="display: inline-block;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="bookId" value="@book.BookId" />
+                                    <button type="submit" class="btn btn-warning" style="color: white;">Return</button>
+                                </form>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

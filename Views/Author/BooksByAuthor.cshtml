@@ -1,0 +1,39 @@
+@model List<LibraryManagement.ViewModels.BookViewModel>
+@{
+    Layout = "_Layout";
+}
+
+<h1>📖 Books by @ViewBag.AuthorName</h1>
+
+<div class="markdown-table-container">
+    <table class="markdown-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Library Branch</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.LibraryBranchName</td>
+                    <td>
+                        @if (string.IsNullOrEmpty(book.CustomerId))
+                        {
+                            <span class="text-success">✅ Available</span>
+                        }
+                        else
+                        {
+                            <span class="text-error">Checked out by @book.BorrowerName</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a href="/Author" class="btn btn-secondary">← Back to Authors List</a>

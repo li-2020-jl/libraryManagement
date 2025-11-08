@@ -1,0 +1,11 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Error";
+}
+<h2>Oops! An error occurred.</h2>
+
+<p class="error-message">
+    Status Code: <strong>@ViewBag.StatusCode</strong><br />
+    Path: <code>@ViewBag.OriginalPath</code><br />
+    Query: <code>@ViewBag.OriginalQuery</code>
+</p>

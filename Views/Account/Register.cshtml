@@ -1,0 +1,55 @@
+@model LibraryManagement.ViewModels.RegisterViewModel
+@{
+    Layout = "_Layout";
+}
+
+<h2 style="margin-bottom: 1.5rem;">📝 Register</h2>
+
+<form method="post" style="max-width: 500px;">
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="Username"></label>
+        <input asp-for="Username" type="text" required />
+        <span asp-validation-for="Username" class="text-error"></span>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" required />
+        <span asp-validation-for="Password" class="text-error"></span>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="ConfirmPassword"></label>
+        <input asp-for="ConfirmPassword" type="password" required />
+        <span asp-validation-for="ConfirmPassword" class="text-error"></span>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" required />
+        <span asp-validation-for="Email" class="text-error"></span>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" type="text" required />
+        <span asp-validation-for="PhoneNumber" class="text-error"></span>
+    </div>
+
+    <button type="submit" class="btn btn-blue">Register</button>
+</form>
+
+<hr style="margin: 2rem 0;" />
+
+<div style="margin-bottom: 1rem;">
+    <p><strong>Or register with a social account:</strong></p>
+    <p style="font-size: 0.95rem; color: #9ca3af;">
+        You can register using your <strong>Google</strong> or <strong>GitHub</strong> account.<br />
+        Your email will be saved automatically after authentication.
+    </p>
+</div>
+
+<form method="post" asp-action="ExternalLogin">
+    <button type="submit" name="provider" value="Google" class="btn" style="background-color: #acbfff;">Register with Google</button>
+    <button type="submit" name="provider" value="GitHub" class="btn" style="background-color: #aae0ff; margin-left: 0.5rem;">Register with GitHub</button>
+</form>

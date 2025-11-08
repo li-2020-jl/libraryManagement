@@ -1,0 +1,44 @@
+@model LibraryManagement.ViewModels.LoginViewModel
+@{
+    Layout = "_Layout";
+}
+
+<h2 style="margin-bottom: 1.5rem;">🔐 Login</h2>
+
+<form method="post" style="max-width: 400px;">
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="Username"></label><br />
+        <input asp-for="Username" type="text" required />
+        <span asp-validation-for="Username" class="text-error"></span>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label asp-for="Password"></label><br />
+        <input asp-for="Password" type="password" required />
+        <span asp-validation-for="Password" class="text-error"></span>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label>
+            <input type="checkbox" asp-for="RememberMe" />
+            Remember me
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-blue">Login</button>
+</form>
+
+<hr style="margin: 2rem 0;" />
+
+<div style="margin-bottom: 1rem;">
+    <p><strong>Or log in with your social account:</strong></p>
+    <p style="font-size: 0.95rem; color: #9ca3af;">
+        You can log in using your <strong>Google</strong> or <strong>GitHub</strong> account.  
+        Your email will be securely stored in the system after login.
+    </p>
+</div>
+
+<form method="post" asp-action="ExternalLogin">
+    <button type="submit" name="provider" value="Google" class="btn" style="background-color: #acbfff;">Login with Google</button>
+    <button type="submit" name="provider" value="GitHub" class="btn" style="background-color: #aae0ff; margin-left: 0.5rem;">Login with GitHub</button>
+</form>

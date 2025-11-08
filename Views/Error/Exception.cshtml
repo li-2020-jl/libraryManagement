@@ -1,0 +1,10 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Exception";
+}
+<h2>🚨 An exception was thrown</h2>
+
+<p class="error-message">
+    @ViewBag.ErrorMessage <br />
+    Path: <code>@ViewBag.Path</code>
+</p>

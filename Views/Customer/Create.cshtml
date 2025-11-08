@@ -1,0 +1,28 @@
+@model LibraryManagement.ViewModels.CustomerViewModel
+@{
+    Layout = "_Layout";
+}
+
+<h2>Add New Customer</h2>
+
+<form asp-action="Create" method="post" style="max-width: 500px; margin-top: 1rem;" class="markdown-body">
+    <div>
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" type="text" required />
+    </div>
+
+    <div>
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" type="email" required />
+    </div>
+
+    <div>
+        <label asp-for="Phone">Phone</label>
+        <input asp-for="Phone" type="tel" required />
+    </div>
+
+    <div style="margin-top: 1rem;">
+        <button type="submit" class="btn btn-blue">Save</button>
+        <a asp-action="Index" class="btn btn-secondary" style="margin-left: 0.5rem;">Cancel</a>
+    </div>
+</form>

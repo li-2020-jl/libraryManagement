@@ -1,0 +1,19 @@
+@model LibraryManagement.ViewModels.LibraryBranchViewModel
+@{
+    Layout = "_Layout";
+}
+
+<h2>Edit Branch</h2>
+
+<form asp-action="Edit" method="post" style="max-width: 500px; margin-top: 1rem;">
+    <input type="hidden" asp-for="LibraryBranchId" />
+
+    <div style="margin-bottom: 1rem;">
+        <label for="BranchName">Branch Name</label><br />
+        <input asp-for="BranchName" type="text" />
+        <span asp-validation-for="BranchName" class="text-error"></span>
+    </div>
+
+    <button type="submit" class="btn btn-blue">Save</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary" style="margin-left: 0.75rem;">Cancel</a>
+</form>

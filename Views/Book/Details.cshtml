@@ -1,0 +1,11 @@
+@model LibraryManagement.ViewModels.BookViewModel
+@{
+    Layout = "_Layout";
+}
+
+<h1>@Model.Title</h1>
+
+<p><strong>Author:</strong> @Model.AuthorName</p>
+<p><strong>Branch:</strong> @Model.LibraryBranchName</p>
+
+<a asp-action="Index" class="btn btn-secondary">⬅ Back to List</a>

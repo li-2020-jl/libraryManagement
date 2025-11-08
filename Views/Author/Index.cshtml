@@ -1,0 +1,44 @@
+@model List<LibraryManagement.ViewModels.AuthorViewModel>
+@{
+    Layout = "_Layout";
+}
+
+<h1>📚 Authors List</h1>
+
+<!-- Search -->
+<form asp-action="Index" method="get" style="margin-bottom: 1.5rem;">
+    <input type="text"
+           name="search"
+           placeholder="🔍 Search by author name"
+           value="@ViewBag.Search"
+           style="padding: 8px 14px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 300px;" />
+    <button type="submit" class="btn btn-outline">Search</button>
+</form>
+
+<!-- Table -->
+<div class="markdown-table-container">
+    <table class="markdown-table">
+        <thead>
+            <tr>
+                <th>Author Name</th>
+                <th>Books Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var author in Model)
+            {
+                <tr>
+                    <td>@author.Name</td>
+                    <td>
+                        <a asp-controller="Author"
+                           asp-action="BooksByAuthor"
+                           asp-route-authorId="@author.AuthorId"
+                           class="btn btn-blue">
+                           @author.BookCount
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
