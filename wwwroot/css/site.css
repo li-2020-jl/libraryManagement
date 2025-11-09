@@ -578,23 +578,25 @@ a.btn-outline:hover:visited {
 }
 
 /* ===== TABLE ACTION BUTTONS ===== */
-/* Lightweight button styles for table rows - minimal visual weight */
+/* Lightweight button styles for table rows - same size as regular buttons, transparent background with colored text */
 
 /* Primary action in tables (with border + colored text) */
 .btn-table-primary {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  font-size: 13px;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 14px;
   font-weight: 500;
-  border-radius: 4px;
+  border-radius: 8px;
   background: transparent;
   border: 1.5px solid;
   cursor: pointer;
   transition: all 0.2s ease;
   text-decoration: none;
   line-height: 1.2;
+  margin-right: 0.5rem;
 }
 
 .btn-table-primary.blue {
@@ -619,21 +621,45 @@ a.btn-outline:hover:visited {
   background: rgba(251, 146, 60, 0.1);
 }
 
+.btn-table-primary.red {
+  color: #f87171;
+  border-color: #f87171;
+}
+
+.btn-table-primary.red:hover {
+  color: #fca5a5;
+  border-color: #fca5a5;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.btn-table-primary.green {
+  color: #4ade80;
+  border-color: #4ade80;
+}
+
+.btn-table-primary.green:hover {
+  color: #86efac;
+  border-color: #86efac;
+  background: rgba(74, 222, 128, 0.1);
+}
+
 /* Secondary action in tables (text only, no border) */
 .btn-table-secondary {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  font-size: 13px;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 14px;
   font-weight: 500;
-  border-radius: 4px;
+  border-radius: 8px;
   background: transparent;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
   text-decoration: none;
   line-height: 1.2;
+  margin-right: 0.5rem;
 }
 
 .btn-table-secondary.blue {
@@ -642,7 +668,7 @@ a.btn-outline:hover:visited {
 
 .btn-table-secondary.blue:hover {
   color: #93c5fd;
-  background: rgba(96, 165, 250, 0.08);
+  background: rgba(96, 165, 250, 0.1);
 }
 
 .btn-table-secondary.orange {
@@ -651,7 +677,7 @@ a.btn-outline:hover:visited {
 
 .btn-table-secondary.orange:hover {
   color: #fdba74;
-  background: rgba(251, 146, 60, 0.08);
+  background: rgba(251, 146, 60, 0.1);
 }
 
 .btn-table-secondary.green {
@@ -660,7 +686,16 @@ a.btn-outline:hover:visited {
 
 .btn-table-secondary.green:hover {
   color: #86efac;
-  background: rgba(74, 222, 128, 0.08);
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.btn-table-secondary.red {
+  color: #f87171;
+}
+
+.btn-table-secondary.red:hover {
+  color: #fca5a5;
+  background: rgba(248, 113, 113, 0.1);
 }
 
 /* Icons in table buttons */
