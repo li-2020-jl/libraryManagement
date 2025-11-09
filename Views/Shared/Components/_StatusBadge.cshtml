@@ -1,0 +1,24 @@
+@* Status Badge Component
+   Parameters:
+   - isAvailable: bool
+   - borrowerName: string (optional, for checked out status)
+*@
+
+@{
+    var isAvailable = (bool)(ViewData["IsAvailable"] ?? true);
+    var borrowerName = ViewData["BorrowerName"]?.ToString();
+}
+
+@if (isAvailable)
+{
+    <span class="status-available">
+        <i data-lucide="check-circle"></i> Available
+    </span>
+}
+else
+{
+    <span class="status-checked-out">
+        <i data-lucide="clock"></i> Checked out@(string.IsNullOrEmpty(borrowerName) ? "" : $" by {borrowerName}")
+    </span>
+}
+

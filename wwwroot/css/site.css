@@ -259,6 +259,33 @@ h3 [data-lucide] {
   stroke-width: 2;
 }
 
+/* ===== BOOK COVER STYLES ===== */
+.book-cover {
+  width: 50px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #30363d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.book-cover-placeholder {
+  width: 50px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #21262d;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  color: #6b7280;
+}
+
+.book-cover-placeholder [data-lucide] {
+  width: 24px;
+  height: 24px;
+}
+
 /* ===== STATUS BADGE/TAG STYLES ===== */
 .status-available {
   display: inline-flex;

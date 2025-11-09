@@ -1,0 +1,27 @@
+@* Search Bar Component
+   Parameters:
+   - placeholder: string (e.g., "Search by book title")
+   - searchValue: string (current search term)
+   - actionName: string (default: "Index")
+*@
+
+@{
+    var placeholder = ViewData["Placeholder"]?.ToString() ?? "Search";
+    var searchValue = ViewData["SearchValue"]?.ToString() ?? "";
+    var actionName = ViewData["ActionName"]?.ToString() ?? "Index";
+}
+
+<form asp-action="@actionName" method="get" style="margin-bottom: 1.5rem;">
+    <div style="display: flex; align-items: stretch; gap: 8px;">
+        <div style="position: relative; flex: 0 0 300px;">
+            <i data-lucide="search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #6b7280; width: 18px; height: 18px;"></i>
+            <input type="text"
+                   name="search"
+                   placeholder="@placeholder"
+                   value="@searchValue"
+                   style="padding: 8px 14px 8px 40px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 100%; height: 38px; box-sizing: border-box;" />
+        </div>
+        <button type="submit" class="btn btn-outline" style="height: 38px;">Search</button>
+    </div>
+</form>
+

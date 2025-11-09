@@ -1,0 +1,92 @@
+@* Action Button Component
+   Parameters:
+   - action: string (Edit, Delete, Save, Cancel, Back, etc.)
+   - type: string (blue, danger, secondary, warning, outline)
+   - icon: string (lucide icon name)
+   - text: string
+   - url: string (for link buttons)
+   - controller: string (for asp-action)
+   - actionName: string (for asp-action)
+   - routeId: string (for asp-route-id)
+   - buttonType: string (button or link, default: link)
+*@
+
+@{
+    var btnType = ViewData["Type"]?.ToString() ?? "secondary";
+    var icon = ViewData["Icon"]?.ToString();
+    var text = ViewData["Text"]?.ToString() ?? "Button";
+    var url = ViewData["Url"]?.ToString();
+    var controller = ViewData["Controller"]?.ToString();
+    var actionName = ViewData["ActionName"]?.ToString();
+    var routeId = ViewData["RouteId"]?.ToString();
+    var buttonType = ViewData["ButtonType"]?.ToString() ?? "link";
+    var additionalStyle = ViewData["Style"]?.ToString() ?? "";
+}
+
+@if (buttonType == "button")
+{
+    <button type="submit" class="btn btn-@btnType" style="@additionalStyle">
+        @if (!string.IsNullOrEmpty(icon))
+        {
+            <i data-lucide="@icon"></i>
+        }
+        @text
+    </button>
+}
+else if (!string.IsNullOrEmpty(url))
+{
+    <a href="@url" class="btn btn-@btnType" style="@additionalStyle">
+        @if (!string.IsNullOrEmpty(icon))
+        {
+            <i data-lucide="@icon"></i>
+        }
+        @text
+    </a>
+}
+else if (!string.IsNullOrEmpty(controller) && !string.IsNullOrEmpty(actionName))
+{
+    if (!string.IsNullOrEmpty(routeId))
+    {
+        <a asp-controller="@controller" asp-action="@actionName" asp-route-id="@routeId" class="btn btn-@btnType" style="@additionalStyle">
+            @if (!string.IsNullOrEmpty(icon))
+            {
+                <i data-lucide="@icon"></i>
+            }
+            @text
+        </a>
+    }
+    else
+    {
+        <a asp-controller="@controller" asp-action="@actionName" class="btn btn-@btnType" style="@additionalStyle">
+            @if (!string.IsNullOrEmpty(icon))
+            {
+                <i data-lucide="@icon"></i>
+            }
+            @text
+        </a>
+    }
+}
+else if (!string.IsNullOrEmpty(actionName))
+{
+    if (!string.IsNullOrEmpty(routeId))
+    {
+        <a asp-action="@actionName" asp-route-id="@routeId" class="btn btn-@btnType" style="@additionalStyle">
+            @if (!string.IsNullOrEmpty(icon))
+            {
+                <i data-lucide="@icon"></i>
+            }
+            @text
+        </a>
+    }
+    else
+    {
+        <a asp-action="@actionName" class="btn btn-@btnType" style="@additionalStyle">
+            @if (!string.IsNullOrEmpty(icon))
+            {
+                <i data-lucide="@icon"></i>
+            }
+            @text
+        </a>
+    }
+}
+
