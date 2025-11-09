@@ -69,60 +69,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     
-    // ===== STICKY HEADER & SEARCH BAR =====
-    const searchForms = document.querySelectorAll('form[method="get"]');
-    const tables = document.querySelectorAll('.markdown-table');
-    
-    // Make search bars sticky
-    searchForms.forEach(form => {
-        if (form.querySelector('input[name="search"]')) {
-            const formParent = form.parentElement || document.body;
-            
-            window.addEventListener('scroll', () => {
-                const rect = formParent.getBoundingClientRect();
-                
-                if (rect.top <= 0) {
-                    form.style.position = 'sticky';
-                    form.style.top = '0';
-                    form.style.zIndex = '100';
-                    form.style.backgroundColor = '#0d1117';
-                    form.style.paddingTop = '1rem';
-                    form.style.paddingBottom = '1rem';
-                    form.style.marginBottom = '0';
-                    form.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.3)';
-                    form.classList.add('sticky-active');
-                } else {
-                    form.style.position = 'relative';
-                    form.style.boxShadow = 'none';
-                    form.classList.remove('sticky-active');
-                }
-            });
-        }
-    });
-    
-    // Make table headers sticky
-    tables.forEach(table => {
-        const thead = table.querySelector('thead');
-        if (thead) {
-            const tableContainer = table.closest('.markdown-table-container');
-            
-            window.addEventListener('scroll', () => {
-                if (tableContainer) {
-                    const rect = tableContainer.getBoundingClientRect();
-                    
-                    if (rect.top <= 60 && rect.bottom > 100) {
-                        thead.style.position = 'sticky';
-                        thead.style.top = '60px';
-                        thead.style.zIndex = '50';
-                        thead.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.3)';
-                    } else {
-                        thead.style.position = 'relative';
-                        thead.style.boxShadow = 'none';
-                    }
-                }
-            });
-        }
-    });
+    // ===== STICKY HEADER & SEARCH BAR (DISABLED - Causes content overlap) =====
+    // Sticky functionality disabled to prevent content overlap issues
+    // Can be re-enabled with proper spacing adjustments if needed
     
     
     // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
