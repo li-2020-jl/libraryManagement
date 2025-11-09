@@ -15,13 +15,13 @@ namespace LibraryManagement.Controllers
             _context = context;
         }
         
-        public IActionResult Index(string searchTerm)
+        public IActionResult Index(string? search)
         {
             var query = _context.LibraryBranches.AsQueryable();
 
-            if (!string.IsNullOrEmpty(searchTerm))
+            if (!string.IsNullOrEmpty(search))
             {
-                query = query.Where(b => b.BranchName.Contains(searchTerm));
+                query = query.Where(b => b.BranchName.Contains(search));
             }
 
             var branches = query
@@ -33,6 +33,7 @@ namespace LibraryManagement.Controllers
                 })
                 .ToList();
 
+            ViewBag.Search = search;
             return View(branches);
         }
         

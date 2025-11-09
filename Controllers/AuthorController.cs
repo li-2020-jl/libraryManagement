@@ -17,10 +17,10 @@ namespace LibraryManagement.Controllers
             _context = context;
         }
 
-        public IActionResult Index(string searchQuery)
+        public IActionResult Index(string? search)
         {
             var authors = _context.Authors
-                .Where(a => string.IsNullOrEmpty(searchQuery) || a.Name.Contains(searchQuery))
+                .Where(a => string.IsNullOrEmpty(search) || a.Name.Contains(search))
                 .Select(a => new AuthorViewModel
                 {
                     AuthorId = a.AuthorId,
@@ -29,7 +29,7 @@ namespace LibraryManagement.Controllers
                 })
                 .ToList();
 
-            ViewBag.SearchQuery = searchQuery; 
+            ViewBag.Search = search; 
             return View(authors);
         }
 
