@@ -152,6 +152,26 @@ namespace LibraryManagement.Controllers
                 return RedirectToAction("Details", new { id = currentUserId });
         }
 
+        public IActionResult Delete(string id)
+        {
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (id != currentUserId)
+                return Unauthorized();
+
+            var customer = _context.Customers.Find(id);
+            if (customer == null) return NotFound();
+
+            var viewModel = new CustomerViewModel
+            {
+                CustomerId = customer.Id,
+                Name = customer.Name,
+                Email = customer.Email,
+                Phone = customer.PhoneNumber
+            };
+
+            return View(viewModel);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(string customerId)

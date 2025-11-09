@@ -40,7 +40,7 @@ else
                                 <form asp-action="ReturnBook" method="post" style="margin: 0;">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
-                                    <button type="submit" class="btn-table-primary purple"><i data-lucide="rotate-ccw"></i> Return</button>
+                                    <button type="submit" class="btn-table-primary purple"><i data-lucide="arrow-up-circle"></i> Return</button>
                                 </form>
                             }
                             else

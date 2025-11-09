@@ -96,7 +96,7 @@
                                 <form asp-action="ReturnBook" method="post" style="display: inline-block;">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
-                                    <button type="submit" class="btn-table-primary purple"><i data-lucide="rotate-ccw"></i> Return</button>
+                                    <button type="submit" class="btn-table-primary purple"><i data-lucide="arrow-up-circle"></i> Return</button>
                                 </form>
                             }
                         }
