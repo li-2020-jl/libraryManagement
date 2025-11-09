@@ -85,7 +85,7 @@
                             if (!isCheckedOut)
                             {
                                 <!-- current user borrow -->
-                                <form asp-action="Checkout" method="post" style="display: inline-block;">
+                                <form asp-action="Checkout" method="post" style="display: inline-block;" data-ajax="true">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
                                     <button type="submit" class="btn btn-blue"><i data-lucide="book-plus"></i> Borrow</button>
@@ -94,7 +94,7 @@
                             else if (book.CustomerId == currentUserId)
                             {
                                 <!-- current user return -->
-                                <form asp-action="ReturnBook" method="post" style="display: inline-block;">
+                                <form asp-action="ReturnBook" method="post" style="display: inline-block;" data-ajax="true">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
                                     <button type="submit" class="btn btn-warning"><i data-lucide="book-minus"></i> Return</button>

@@ -43,7 +43,7 @@ else
                         <td>
                             @if (isCurrentUser)
                             {
-                                <form asp-action="ReturnBook" method="post" style="margin: 0;">
+                                <form asp-action="ReturnBook" method="post" style="margin: 0;" data-ajax="true">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
                                     <button type="submit" class="btn btn-warning"><i data-lucide="book-minus"></i> Return</button>

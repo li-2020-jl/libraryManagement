@@ -201,4 +201,53 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    
+    // ===== AJAX BOOK BORROW/RETURN =====
+    // Handle borrow and return actions without full page reload
+    document.addEventListener('click', function(e) {
+        const form = e.target.closest('form[data-ajax="true"]');
+        if (form) {
+            e.preventDefault();
+            
+            const button = form.querySelector('button[type="submit"]');
+            if (button) {
+                button.disabled = true;
+                button.style.opacity = '0.6';
+            }
+            
+            // Get form data
+            const formData = new FormData(form);
+            const action = form.action;
+            
+            // Send AJAX request
+            fetch(action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'RequestVerificationToken': formData.get('__RequestVerificationToken')
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Reload the current page to update the table
+                    window.location.reload();
+                } else {
+                    alert('Operation failed. Please try again.');
+                    if (button) {
+                        button.disabled = false;
+                        button.style.opacity = '1';
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+                if (button) {
+                    button.disabled = false;
+                    button.style.opacity = '1';
+                }
+            });
+        }
+    });
+    
 });

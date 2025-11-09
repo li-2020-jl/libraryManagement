@@ -31,21 +31,21 @@
                     <td>@customer.Email</td>
                     <td>@customer.Phone</td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn-table-secondary blue">
+                        <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn btn-blue btn-sm">
                             @customer.BorrowedBooks
                         </a>
                     </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn-table-primary orange">
-                            <i data-lucide="@(isCurrentUser ? "arrow-up-circle" : "eye")"></i> @(isCurrentUser ? "Return Books" : "View Books")
+                        <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn @(isCurrentUser ? "btn-warning" : "btn-outline")">
+                            <i data-lucide="@(isCurrentUser ? "book-minus" : "eye")"></i> @(isCurrentUser ? "Return Books" : "View Books")
                         </a>
                         @if (isCurrentUser)
                         {
                             <a asp-action="Edit"
                                 asp-route-id="@customer.CustomerId"
                                 asp-route-returnUrl="@Url.Action("Index", "Customer")"
-                                class="btn-table-primary blue"><i data-lucide="edit"></i> Edit</a>
-                            <a asp-action="Delete" asp-route-id="@customer.CustomerId" class="btn-table-secondary red"><i data-lucide="trash-2"></i> Delete</a>
+                                class="btn btn-blue"><i data-lucide="edit"></i> Edit</a>
+                            <a asp-action="Delete" asp-route-id="@customer.CustomerId" class="btn btn-danger"><i data-lucide="trash-2"></i> Delete</a>
                         }
                     </td>
                 </tr>
