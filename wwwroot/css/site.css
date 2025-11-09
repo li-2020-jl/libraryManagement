@@ -146,7 +146,19 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="tel"], 
-select,
+select {
+  width: 100%;
+  padding: 10px 40px 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #4b5563;
+  background-color: #1f2937;
+  color: #f9fafb;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
 textarea {
   width: 100%;
   padding: 10px 14px;

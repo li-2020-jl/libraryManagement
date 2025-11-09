@@ -41,9 +41,18 @@
                         })
                     </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn-table-primary @(isCurrentUser ? "purple" : "orange")">
-                            <i data-lucide="@(isCurrentUser ? "arrow-up-circle" : "eye")"></i> @(isCurrentUser ? "Return Books" : "View Books")
-                        </a>
+                        @if (isCurrentUser)
+                        {
+                            <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn-table-primary purple">
+                                <i data-lucide="arrow-up-circle"></i> Return Books
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn btn-outline">
+                                <i data-lucide="eye"></i> View Books
+                            </a>
+                        }
                         @if (isCurrentUser)
                         {
                             @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)

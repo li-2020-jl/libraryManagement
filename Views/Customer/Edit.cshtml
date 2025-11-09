@@ -41,7 +41,6 @@
     @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
     {
         { "Url", Model.ReturnUrl ?? Url.Action("Index", "Home") },
-        { "Icon", "arrow-left" },
         { "Color", "secondary" },
         { "Text", "Cancel" },
         { "Style", "margin-left: 1rem;" }
