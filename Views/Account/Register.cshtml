@@ -39,8 +39,10 @@
     @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
     {
         { "ButtonType", "submit" },
+        { "Icon", "user-plus" },
         { "Color", "blue" },
-        { "Text", "Register" }
+        { "Text", "Register" },
+        { "Style", "font-size: 16px; padding: 14px 28px;" }
     })
 </form>
 
@@ -55,6 +57,6 @@
 </div>
 
 <form method="post" asp-action="ExternalLogin">
-    <button type="submit" name="provider" value="Google" class="btn" style="background-color: #acbfff;"><i data-lucide="mail"></i> Register with Google</button>
-    <button type="submit" name="provider" value="GitHub" class="btn" style="background-color: #aae0ff; margin-left: 0.5rem;"><i data-lucide="github"></i> Register with GitHub</button>
+    <button type="submit" name="provider" value="Google" class="btn btn-outline"><i data-lucide="mail"></i> Register with Google</button>
+    <button type="submit" name="provider" value="GitHub" class="btn btn-outline" style="margin-left: 0.5rem;"><i data-lucide="github"></i> Register with GitHub</button>
 </form>

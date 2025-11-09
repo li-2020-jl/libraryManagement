@@ -96,7 +96,7 @@
                                 <form asp-action="Checkout" method="post" style="display: inline-block;" data-ajax="true">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
-                                    <button type="submit" class="btn btn-blue"><i data-lucide="book-plus"></i> Borrow</button>
+                                    <button type="submit" class="btn-table-primary green"><i data-lucide="arrow-down-circle"></i> Borrow</button>
                                 </form>
                             }
                             else if (book.CustomerId == currentUserId)
@@ -105,7 +105,7 @@
                                 <form asp-action="ReturnBook" method="post" style="display: inline-block;" data-ajax="true">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
-                                    <button type="submit" class="btn btn-warning"><i data-lucide="book-minus"></i> Return</button>
+                                    <button type="submit" class="btn-table-primary purple"><i data-lucide="arrow-up-circle"></i> Return</button>
                                 </form>
                             }
                         }

@@ -17,12 +17,14 @@
     @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
     {
         { "ButtonType", "submit" },
+        { "Icon", "check" },
         { "Color", "blue" },
         { "Text", "Save" }
     })
     @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
     {
         { "Url", Url.Action("Index") },
+        { "Icon", "arrow-left" },
         { "Color", "secondary" },
         { "Text", "Cancel" },
         { "Style", "margin-left: 0.75rem;" }
