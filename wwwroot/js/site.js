@@ -202,6 +202,43 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     
+    // ===== SEARCH INPUT ICON TOGGLE =====
+    // Hide search icon when user starts typing, show when empty
+    const searchInputs = document.querySelectorAll('.search-input');
+    searchInputs.forEach(input => {
+        const icon = input.parentElement.querySelector('.search-icon');
+        
+        if (icon) {
+            // Check initial state
+            if (input.value.trim() !== '') {
+                icon.style.opacity = '0';
+            }
+            
+            // Listen for input events
+            input.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    icon.style.opacity = '0';
+                } else {
+                    icon.style.opacity = '1';
+                }
+            });
+            
+            // Listen for focus/blur events for better UX
+            input.addEventListener('focus', function() {
+                if (this.value.trim() !== '') {
+                    icon.style.opacity = '0';
+                }
+            });
+            
+            input.addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    icon.style.opacity = '1';
+                }
+            });
+        }
+    });
+    
+    
     // ===== AJAX BOOK BORROW/RETURN =====
     // Handle borrow and return actions with smooth local refresh (no full page reload)
     document.addEventListener('click', function(e) {
