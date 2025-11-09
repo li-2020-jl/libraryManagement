@@ -949,3 +949,19 @@ form.sticky-active {
 .animate-scale {
   animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ===== LOADING SPINNER ===== */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

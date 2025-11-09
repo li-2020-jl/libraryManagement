@@ -3,7 +3,8 @@
    - icon: string (lucide icon name)
    - text: string
    - actionName: string (for asp-action)
-   - routeId: string (for asp-route-id)
+   - routeId: string (for asp-route-id or custom route param)
+   - routeParamName: string (custom route parameter name, default: "id")
    - controller: string (for asp-controller, optional)
    - url: string (for direct href, optional)
    - buttonType: string (submit, button, link, default: link)
@@ -20,6 +21,7 @@
     var controller = ViewData["Controller"]?.ToString();
     var actionName = ViewData["ActionName"]?.ToString();
     var routeId = ViewData["RouteId"]?.ToString();
+    var routeParamName = ViewData["RouteParamName"]?.ToString() ?? "id";
     var buttonType = ViewData["ButtonType"]?.ToString() ?? "link";
     var styleType = ViewData["StyleType"]?.ToString() ?? "btn";
     var color = ViewData["Color"]?.ToString() ?? "secondary";
@@ -74,48 +76,44 @@ else if (!string.IsNullOrEmpty(url))
 }
 else if (!string.IsNullOrEmpty(controller) && !string.IsNullOrEmpty(actionName))
 {
+    string hrefUrl;
     if (!string.IsNullOrEmpty(routeId))
     {
-        <a asp-controller="@controller" asp-action="@actionName" asp-route-id="@routeId" class="@cssClass" style="@additionalStyle">
-            @if (!string.IsNullOrEmpty(icon))
-            {
-                <i data-lucide="@icon"></i>
-            }
-            @text
-        </a>
+        var routeValues = new Dictionary<string, object> { { routeParamName, routeId } };
+        hrefUrl = Url.Action(actionName, controller, routeValues);
     }
     else
     {
-        <a asp-controller="@controller" asp-action="@actionName" class="@cssClass" style="@additionalStyle">
-            @if (!string.IsNullOrEmpty(icon))
-            {
-                <i data-lucide="@icon"></i>
-            }
-            @text
-        </a>
+        hrefUrl = Url.Action(actionName, controller);
     }
+    
+    <a href="@hrefUrl" class="@cssClass" style="@additionalStyle">
+        @if (!string.IsNullOrEmpty(icon))
+        {
+            <i data-lucide="@icon"></i>
+        }
+        @text
+    </a>
 }
 else if (!string.IsNullOrEmpty(actionName))
 {
+    string hrefUrl;
     if (!string.IsNullOrEmpty(routeId))
     {
-        <a asp-action="@actionName" asp-route-id="@routeId" class="@cssClass" style="@additionalStyle">
-            @if (!string.IsNullOrEmpty(icon))
-            {
-                <i data-lucide="@icon"></i>
-            }
-            @text
-        </a>
+        var routeValues = new Dictionary<string, object> { { routeParamName, routeId } };
+        hrefUrl = Url.Action(actionName, routeValues);
     }
     else
     {
-        <a asp-action="@actionName" class="@cssClass" style="@additionalStyle">
-            @if (!string.IsNullOrEmpty(icon))
-            {
-                <i data-lucide="@icon"></i>
-            }
-            @text
-        </a>
+        hrefUrl = Url.Action(actionName);
     }
+    
+    <a href="@hrefUrl" class="@cssClass" style="@additionalStyle">
+        @if (!string.IsNullOrEmpty(icon))
+        {
+            <i data-lucide="@icon"></i>
+        }
+        @text
+    </a>
 }
 

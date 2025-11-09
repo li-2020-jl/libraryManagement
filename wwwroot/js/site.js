@@ -203,16 +203,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     
     // ===== AJAX BOOK BORROW/RETURN =====
-    // Handle borrow and return actions without full page reload
+    // Handle borrow and return actions with smooth local refresh (no full page reload)
     document.addEventListener('click', function(e) {
         const form = e.target.closest('form[data-ajax="true"]');
         if (form) {
             e.preventDefault();
             
             const button = form.querySelector('button[type="submit"]');
+            const tableRow = form.closest('tr');
+            const originalContent = button ? button.innerHTML : '';
+            
             if (button) {
+                // Show loading spinner
                 button.disabled = true;
-                button.style.opacity = '0.6';
+                button.innerHTML = '<div style="display: inline-flex; align-items: center; gap: 6px;"><div class="spinner"></div>Loading...</div>';
             }
             
             // Get form data
@@ -229,13 +233,58 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => {
                 if (response.ok) {
-                    // Reload the current page to update the table
-                    window.location.reload();
+                    // Success animation
+                    if (tableRow) {
+                        tableRow.style.backgroundColor = 'rgba(34, 197, 94, 0.15)';
+                        tableRow.style.transition = 'background-color 0.3s ease';
+                    }
+                    
+                    // Fetch the updated page content
+                    const currentUrl = window.location.href;
+                    fetch(currentUrl)
+                        .then(res => res.text())
+                        .then(html => {
+                            // Parse the new HTML
+                            const parser = new DOMParser();
+                            const newDoc = parser.parseFromString(html, 'text/html');
+                            
+                            // Find the table in the new document
+                            const newTable = newDoc.querySelector('.markdown-table tbody');
+                            const currentTable = document.querySelector('.markdown-table tbody');
+                            
+                            if (newTable && currentTable) {
+                                // Replace the entire table body
+                                currentTable.innerHTML = newTable.innerHTML;
+                                
+                                // Re-initialize Lucide icons
+                                if (typeof lucide !== 'undefined') {
+                                    lucide.createIcons();
+                                }
+                                
+                                // Fade out success color
+                                setTimeout(() => {
+                                    const rows = document.querySelectorAll('.markdown-table tbody tr');
+                                    rows.forEach(row => {
+                                        row.style.backgroundColor = '';
+                                    });
+                                }, 500);
+                            } else {
+                                // Fallback to full page reload if can't find table
+                                window.location.reload();
+                            }
+                        })
+                        .catch(() => {
+                            // Fallback to full page reload on error
+                            window.location.reload();
+                        });
                 } else {
                     alert('Operation failed. Please try again.');
                     if (button) {
                         button.disabled = false;
-                        button.style.opacity = '1';
+                        button.innerHTML = originalContent;
+                        if (typeof lucide !== 'undefined') {
+                            lucide.createIcons();
+                        }
                     }
                 }
             })
@@ -244,7 +293,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('An error occurred. Please try again.');
                 if (button) {
                     button.disabled = false;
-                    button.style.opacity = '1';
+                    button.innerHTML = originalContent;
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons();
+                    }
                 }
             });
         }
