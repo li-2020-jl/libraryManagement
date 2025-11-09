@@ -37,7 +37,7 @@
                     </td>
                     <td>
                         <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn-table-primary orange">
-                            <i data-lucide="@(isCurrentUser ? "book-minus" : "eye")"></i> @(isCurrentUser ? "Return Books" : "View Books")
+                            <i data-lucide="@(isCurrentUser ? "rotate-ccw" : "eye")"></i> @(isCurrentUser ? "Return Books" : "View Books")
                         </a>
                         @if (isCurrentUser)
                         {
