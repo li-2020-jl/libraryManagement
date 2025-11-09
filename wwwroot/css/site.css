@@ -252,26 +252,32 @@ h3 [data-lucide] {
 }
 
 .btn [data-lucide] {
-  width: 14px;
-  height: 14px;
-  margin-right: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0;
   flex-shrink: 0;
+  stroke-width: 2;
+  display: inline-block;
 }
 
-/* ===== STATUS STYLES - Simple & Clean ===== */
+/* ===== STATUS BADGE/TAG STYLES ===== */
 .status-available {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  color: #22c55e;
-  font-weight: 500;
-  font-size: 13px;
+  gap: 5px;
+  padding: 5px 10px;
+  background-color: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  font-weight: 600;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(34, 197, 94, 0.25);
 }
 
 .status-available [data-lucide] {
-  width: 15px;
-  height: 15px;
-  stroke: #22c55e;
+  width: 14px;
+  height: 14px;
+  stroke: #4ade80;
   stroke-width: 2;
   margin-right: 0;
   flex-shrink: 0;
@@ -280,16 +286,20 @@ h3 [data-lucide] {
 .status-checked-out {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  color: #a855f7;
-  font-weight: 500;
-  font-size: 13px;
+  gap: 5px;
+  padding: 5px 10px;
+  background-color: rgba(168, 85, 247, 0.12);
+  color: #c084fc;
+  font-weight: 600;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(168, 85, 247, 0.25);
 }
 
 .status-checked-out [data-lucide] {
-  width: 15px;
-  height: 15px;
-  stroke: #a855f7;
+  width: 14px;
+  height: 14px;
+  stroke: #c084fc;
   stroke-width: 2;
   margin-right: 0;
   flex-shrink: 0;
@@ -311,13 +321,13 @@ form [data-lucide] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
   font-weight: 500;
   letter-spacing: 0.01em;
-  padding: 8px 16px;
+  padding: 9px 16px;
   border-radius: 6px;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -327,6 +337,7 @@ form [data-lucide] {
   transform: translateY(0);
   position: relative;
   overflow: hidden;
+  vertical-align: middle;
 }
 
 .btn:hover {
@@ -347,82 +358,82 @@ form [data-lucide] {
 
 /* Button Variants - Dark Mode Optimized */
 
-/* Primary Action - Blue (Main CTAs) */
+/* Primary Action - Blue (Main CTAs like Save, Login, Borrow) */
 .btn-blue {
-  background-color: #1e40af;
+  background-color: #2563eb;
   color: #ffffff;
-  border: 1px solid #2563eb;
+  border: 1px solid #3b82f6;
 }
 
 .btn-blue:hover {
-  background-color: #1e3a8a;
-  border-color: #1d4ed8;
+  background-color: #1d4ed8;
+  border-color: #2563eb;
 }
 
 .btn-blue:active {
-  background-color: #1e3a8a;
+  background-color: #1e40af;
 }
 
 /* Success/Positive Action - Green */
 .btn-green {
-  background-color: #15803d;
+  background-color: #16a34a;
   color: #ffffff;
-  border: 1px solid #16a34a;
+  border: 1px solid #22c55e;
 }
 
 .btn-green:hover {
-  background-color: #166534;
-  border-color: #15803d;
+  background-color: #15803d;
+  border-color: #16a34a;
 }
 
 /* Warning/Return Action - Orange */
 .btn-warning {
-  background-color: #c2410c;
+  background-color: #ea580c;
   color: #ffffff;
-  border: 1px solid #ea580c;
+  border: 1px solid #f97316;
 }
 
 .btn-warning:hover {
-  background-color: #9a3412;
-  border-color: #c2410c;
+  background-color: #c2410c;
+  border-color: #ea580c;
 }
 
 /* Danger/Delete Action - Red */
 .btn-danger {
-  background-color: #991b1b;
+  background-color: #dc2626;
   color: #ffffff;
-  border: 1px solid #dc2626;
+  border: 1px solid #ef4444;
 }
 
 .btn-danger:hover {
-  background-color: #7f1d1d;
-  border-color: #b91c1c;
+  background-color: #b91c1c;
+  border-color: #dc2626;
 }
 
 /* Secondary Action - Gray (Cancel, Back, etc) */
 .btn-secondary {
-  background-color: #374151;
-  color: #d1d5db;
-  border: 1px solid #4b5563;
+  background-color: #4b5563;
+  color: #f3f4f6;
+  border: 1px solid #6b7280;
 }
 
 .btn-secondary:hover {
-  background-color: #4b5563;
-  border-color: #6b7280;
-  color: #f3f4f6;
+  background-color: #6b7280;
+  border-color: #9ca3af;
+  color: #ffffff;
 }
 
 /* Outline/Ghost Button */
 .btn-outline {
-  background-color: transparent;
-  border: 1px solid #4b5563;
-  color: #d1d5db;
+  background-color: rgba(31, 41, 55, 0.5);
+  border: 1px solid #6b7280;
+  color: #e5e7eb;
 }
 
 .btn-outline:hover {
-  background-color: rgba(75, 85, 99, 0.2);
-  border-color: #6b7280;
-  color: #f3f4f6;
+  background-color: rgba(55, 65, 81, 0.8);
+  border-color: #9ca3af;
+  color: #ffffff;
 }
 
 /* Button Sizes */

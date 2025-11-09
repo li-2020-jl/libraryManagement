@@ -9,14 +9,16 @@
 
 <!-- Search -->
 <form asp-action="Index" method="get" style="margin-bottom: 1.5rem;">
-    <div style="display: flex; align-items: center; gap: 8px;">
-        <i data-lucide="search" style="color: #6b7280;"></i>
-        <input type="text"
-               name="search"
-               placeholder="Search by book title"
-               value="@ViewBag.Search"
-               style="padding: 8px 14px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 300px;" />
-        <button type="submit" class="btn btn-outline"><i data-lucide="search"></i> Search</button>
+    <div style="display: flex; align-items: stretch; gap: 8px;">
+        <div style="position: relative; flex: 0 0 300px;">
+            <i data-lucide="search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #6b7280; width: 18px; height: 18px;"></i>
+            <input type="text"
+                   name="search"
+                   placeholder="Search by book title"
+                   value="@ViewBag.Search"
+                   style="padding: 8px 14px 8px 40px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 100%; height: 38px; box-sizing: border-box;" />
+        </div>
+        <button type="submit" class="btn btn-outline" style="height: 38px;">Search</button>
     </div>
 </form>
 
@@ -27,11 +29,11 @@
         <thead>
             <tr>
                 <th style="width: 8%;">Book ID</th>
-                <th style="width: 25%;">Title</th>
-                <th style="width: 20%;">Author</th>
-                <th style="width: 20%;">Library Branch</th>
-                <th style="width: 15%;">Status</th>
-                <th style="width: 12%;">Actions</th>
+                <th style="width: 22%;">Title</th>
+                <th style="width: 18%;">Author</th>
+                <th style="width: 18%;">Library Branch</th>
+                <th style="width: 18%;">Status</th>
+                <th style="width: 16%;">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -76,7 +78,7 @@
                                 <form asp-action="ReturnBook" method="post" style="display: inline-block;">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="bookId" value="@book.BookId" />
-                                    <button type="submit" class="btn btn-warning" style="color: white;"><i data-lucide="book-minus"></i> Return</button>
+                                    <button type="submit" class="btn btn-warning"><i data-lucide="book-minus"></i> Return</button>
                                 </form>
                             }
                         }
