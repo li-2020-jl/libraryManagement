@@ -577,6 +577,100 @@ a.btn-outline:hover:visited {
   font-weight: 500;
 }
 
+/* ===== TABLE ACTION BUTTONS ===== */
+/* Lightweight button styles for table rows - minimal visual weight */
+
+/* Primary action in tables (with border + colored text) */
+.btn-table-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  background: transparent;
+  border: 1.5px solid;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.btn-table-primary.blue {
+  color: #60a5fa;
+  border-color: #60a5fa;
+}
+
+.btn-table-primary.blue:hover {
+  color: #93c5fd;
+  border-color: #93c5fd;
+  background: rgba(96, 165, 250, 0.1);
+}
+
+.btn-table-primary.orange {
+  color: #fb923c;
+  border-color: #fb923c;
+}
+
+.btn-table-primary.orange:hover {
+  color: #fdba74;
+  border-color: #fdba74;
+  background: rgba(251, 146, 60, 0.1);
+}
+
+/* Secondary action in tables (text only, no border) */
+.btn-table-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.btn-table-secondary.blue {
+  color: #60a5fa;
+}
+
+.btn-table-secondary.blue:hover {
+  color: #93c5fd;
+  background: rgba(96, 165, 250, 0.08);
+}
+
+.btn-table-secondary.orange {
+  color: #fb923c;
+}
+
+.btn-table-secondary.orange:hover {
+  color: #fdba74;
+  background: rgba(251, 146, 60, 0.08);
+}
+
+.btn-table-secondary.green {
+  color: #4ade80;
+}
+
+.btn-table-secondary.green:hover {
+  color: #86efac;
+  background: rgba(74, 222, 128, 0.08);
+}
+
+/* Icons in table buttons */
+.btn-table-primary [data-lucide],
+.btn-table-secondary [data-lucide] {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
 /* ===== TABLE STYLES ===== */
 /* Table rows: Only hover transition, NO loading animations */
 .markdown-table tbody tr {
