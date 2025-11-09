@@ -41,11 +41,24 @@
                         </a>
                         @if (isCurrentUser)
                         {
-                            <a asp-action="Edit"
-                                asp-route-id="@customer.CustomerId"
-                                asp-route-returnUrl="@Url.Action("Index", "Customer")"
-                                class="btn btn-blue"><i data-lucide="edit"></i> Edit</a>
-                            <a asp-action="Delete" asp-route-id="@customer.CustomerId" class="btn btn-danger"><i data-lucide="trash-2"></i> Delete</a>
+                            @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+                            {
+                                { "Icon", "edit" },
+                                { "Text", "Edit" },
+                                { "ActionName", "Edit" },
+                                { "RouteId", customer.CustomerId },
+                                { "StyleType", "table-primary" },
+                                { "Color", "blue" }
+                            })
+                            @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+                            {
+                                { "Icon", "trash-2" },
+                                { "Text", "Delete" },
+                                { "ActionName", "Delete" },
+                                { "RouteId", customer.CustomerId },
+                                { "StyleType", "table-secondary" },
+                                { "Color", "red" }
+                            })
                         }
                     </td>
                 </tr>

@@ -40,8 +40,24 @@
                     <td>@branch.LibraryBranchId</td>
                     <td>@branch.BranchName</td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@branch.LibraryBranchId" class="btn-table-primary blue"><i data-lucide="edit"></i> Edit</a>
-                        <a asp-action="Delete" asp-route-id="@branch.LibraryBranchId" class="btn-table-secondary red"><i data-lucide="trash-2"></i> Delete</a>
+                        @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+                        {
+                            { "Icon", "edit" },
+                            { "Text", "Edit" },
+                            { "ActionName", "Edit" },
+                            { "RouteId", branch.LibraryBranchId.ToString() },
+                            { "StyleType", "table-primary" },
+                            { "Color", "blue" }
+                        })
+                        @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+                        {
+                            { "Icon", "trash-2" },
+                            { "Text", "Delete" },
+                            { "ActionName", "Delete" },
+                            { "RouteId", branch.LibraryBranchId.ToString() },
+                            { "StyleType", "table-secondary" },
+                            { "Color", "red" }
+                        })
                     </td>
                 </tr>
             }
