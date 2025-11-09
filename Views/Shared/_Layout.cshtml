@@ -38,39 +38,30 @@
                 </div>
 
                 <!-- Right Account Links -->
-                <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
                     @if (User.Identity != null && User.Identity.IsAuthenticated)
                     {
-                        <span style="color: white; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
-                            <i data-lucide="user"></i>
-                            @(User.Identity?.Name ?? User.FindFirst("email")?.Value)
-                        </span>
-
-                        <!-- My Profile Link -->
+                        <!-- My Profile Link with Username -->
                         <a asp-controller="Customer"
                             asp-action="Edit"
                             asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value"
                             asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)"
-                            class="btn btn-secondary">
-                                <i data-lucide="user-circle"></i> My Profile
+                            class="btn btn-outline">
+                                <i data-lucide="user-circle"></i> @(User.Identity?.Name ?? User.FindFirst("email")?.Value ?? "My Profile")
                         </a>
 
-                        <a href="javascript:document.getElementById('logoutForm').submit();" class="btn btn-secondary"><i data-lucide="log-out"></i> Logout</a>
+                        <a href="javascript:document.getElementById('logoutForm').submit();" class="btn btn-outline"><i data-lucide="log-out"></i> Logout</a>
                         <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post" style="display: none;">
                             @Html.AntiForgeryToken()
                         </form>
                     }
                     else
                     {
-                        <a asp-controller="Account" asp-action="Register"
-                        class="btn btn-secondary"
-                        style="padding: 8px 16px; border-radius: 8px; font-weight: 500;">
+                        <a asp-controller="Account" asp-action="Register" class="btn btn-outline">
                             <i data-lucide="user-plus"></i> Register
                         </a>
 
-                        <a asp-controller="Account" asp-action="Login"
-                        class="btn btn-secondary"
-                        style="padding: 8px 16px; border-radius: 8px; font-weight: 500;">
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-blue">
                             <i data-lucide="log-in"></i> Login
                         </a>
                     }
