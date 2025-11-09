@@ -36,7 +36,12 @@
         <span asp-validation-for="PhoneNumber" class="text-error"></span>
     </div>
 
-    <button type="submit" class="btn btn-blue">Register</button>
+    @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+    {
+        { "ButtonType", "submit" },
+        { "Color", "blue" },
+        { "Text", "Register" }
+    })
 </form>
 
 <hr style="margin: 2rem 0;" />

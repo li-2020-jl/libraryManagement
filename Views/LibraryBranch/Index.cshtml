@@ -21,7 +21,14 @@
 </form>
 
 <!-- Add Button Section -->
-<a asp-action="Create" class="btn btn-secondary" style="margin-bottom: 1rem;"><i data-lucide="plus-circle"></i> Add New Branch</a>
+@await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+{
+    { "ActionName", "Create" },
+    { "Icon", "plus-circle" },
+    { "Color", "secondary" },
+    { "Text", "Add New Branch" },
+    { "Style", "margin-bottom: 1rem;" }
+})
 
 <!-- Table Section -->
 <div class="markdown-table-container">

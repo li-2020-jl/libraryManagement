@@ -25,7 +25,12 @@
         </label>
     </div>
 
-    <button type="submit" class="btn btn-blue">Login</button>
+    @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+    {
+        { "ButtonType", "submit" },
+        { "Color", "blue" },
+        { "Text", "Login" }
+    })
 </form>
 
 <hr style="margin: 2rem 0;" />

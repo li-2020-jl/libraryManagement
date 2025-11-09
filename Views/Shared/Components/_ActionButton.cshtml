@@ -6,10 +6,11 @@
    - routeId: string (for asp-route-id)
    - controller: string (for asp-controller, optional)
    - url: string (for direct href, optional)
-   - buttonType: string (button or link, default: link)
+   - buttonType: string (submit, button, link, default: link)
    - styleType: string (table-primary, table-secondary, btn, default: btn)
    - color: string (blue, red, green, orange, purple for table styles OR blue, danger, secondary, warning, outline for btn styles)
    - style: string (additional inline styles)
+   - jsFunction: string (JavaScript function to call, e.g., "document.getElementById('formId').submit()")
 *@
 
 @{
@@ -23,6 +24,7 @@
     var styleType = ViewData["StyleType"]?.ToString() ?? "btn";
     var color = ViewData["Color"]?.ToString() ?? "secondary";
     var additionalStyle = ViewData["Style"]?.ToString() ?? "";
+    var jsFunction = ViewData["JsFunction"]?.ToString();
     
     // Determine CSS class
     string cssClass;
@@ -40,15 +42,25 @@
     }
 }
 
-@if (buttonType == "button")
+@if (buttonType == "submit" || buttonType == "button")
 {
-    <button type="submit" class="@cssClass" style="@additionalStyle">
+    <button type="@buttonType" class="@cssClass" style="@additionalStyle">
         @if (!string.IsNullOrEmpty(icon))
         {
             <i data-lucide="@icon"></i>
         }
         @text
     </button>
+}
+else if (!string.IsNullOrEmpty(jsFunction))
+{
+    <a href="javascript:@jsFunction" class="@cssClass" style="@additionalStyle">
+        @if (!string.IsNullOrEmpty(icon))
+        {
+            <i data-lucide="@icon"></i>
+        }
+        @text
+    </a>
 }
 else if (!string.IsNullOrEmpty(url))
 {

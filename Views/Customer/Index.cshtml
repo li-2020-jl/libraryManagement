@@ -31,9 +31,14 @@
                     <td>@customer.Email</td>
                     <td>@customer.Phone</td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn btn-blue btn-sm">
-                            @customer.BorrowedBooks
-                        </a>
+                        @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+                        {
+                            { "ActionName", "Details" },
+                            { "RouteId", customer.CustomerId },
+                            { "Color", "blue" },
+                            { "Text", customer.BorrowedBooks.ToString() },
+                            { "Style", "font-size: 13px; padding: 6px 12px;" }
+                        })
                     </td>
                     <td>
                         <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn @(isCurrentUser ? "btn-warning" : "btn-outline")">

@@ -36,12 +36,15 @@
                 <tr>
                     <td>@author.Name</td>
                     <td>
-                        <a asp-controller="Author"
-                           asp-action="BooksByAuthor"
-                           asp-route-authorId="@author.AuthorId"
-                           class="btn-table-secondary blue">
-                           @author.BookCount
-                        </a>
+                        @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+                        {
+                            { "Controller", "Author" },
+                            { "ActionName", "BooksByAuthor" },
+                            { "RouteId", author.AuthorId.ToString() },
+                            { "StyleType", "table-secondary" },
+                            { "Color", "blue" },
+                            { "Text", author.BookCount.ToString() }
+                        })
                     </td>
                 </tr>
             }

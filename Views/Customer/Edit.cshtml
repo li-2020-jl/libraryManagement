@@ -31,8 +31,17 @@
         <span asp-validation-for="Phone" class="text-error"></span>
     </div>
 
-    <button type="submit" class="btn btn-blue">Save Changes</button>
-    <a class="btn btn-secondary" 
-       href="@(Model.ReturnUrl ?? Url.Action("Index", "Home"))" 
-       style="margin-left: 1rem;">Cancel</a>
+    @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+    {
+        { "ButtonType", "submit" },
+        { "Color", "blue" },
+        { "Text", "Save Changes" }
+    })
+    @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+    {
+        { "Url", Model.ReturnUrl ?? Url.Action("Index", "Home") },
+        { "Color", "secondary" },
+        { "Text", "Cancel" },
+        { "Style", "margin-left: 1rem;" }
+    })
 </form>

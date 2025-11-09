@@ -24,7 +24,19 @@
             <input asp-for="BranchName" type="text" readonly />
         </div>
 
-        <button type="submit" class="btn btn-danger"><i data-lucide="trash-2"></i> Yes, Delete</button>
-        <a href="@Url.Action("Index")" class="btn btn-secondary" style="margin-left: 0.75rem;">Cancel</a>
+        @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+        {
+            { "ButtonType", "submit" },
+            { "Color", "danger" },
+            { "Icon", "trash-2" },
+            { "Text", "Yes, Delete" }
+        })
+        @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+        {
+            { "Url", Url.Action("Index") },
+            { "Color", "secondary" },
+            { "Text", "Cancel" },
+            { "Style", "margin-left: 0.75rem;" }
+        })
     </form>
 </div>

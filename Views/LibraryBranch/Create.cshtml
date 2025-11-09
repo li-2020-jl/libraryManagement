@@ -11,6 +11,17 @@
         <input asp-for="BranchName" type="text" required />
     </div>
 
-    <button type="submit" class="btn btn-blue">Save</button>
-    <a asp-action="Index" class="btn btn-secondary" style="margin-left: 0.5rem;">Cancel</a>
+    @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+    {
+        { "ButtonType", "submit" },
+        { "Color", "blue" },
+        { "Text", "Save" }
+    })
+    @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+    {
+        { "ActionName", "Index" },
+        { "Color", "secondary" },
+        { "Text", "Cancel" },
+        { "Style", "margin-left: 0.5rem;" }
+    })
 </form>

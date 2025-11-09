@@ -40,4 +40,10 @@
     </table>
 </div>
 
-<a href="/Author" class="btn btn-secondary"><i data-lucide="arrow-left"></i> Back to Authors List</a>
+@await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+{
+    { "Url", "/Author" },
+    { "Icon", "arrow-left" },
+    { "Color", "secondary" },
+    { "Text", "Back to Authors List" }
+})

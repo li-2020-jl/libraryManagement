@@ -61,4 +61,11 @@ else
     </div>
 }
 
-<a asp-action="Index" class="btn btn-secondary" style="margin-top: 1rem;"><i data-lucide="arrow-left"></i> Back to Customers</a>
+@await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+{
+    { "ActionName", "Index" },
+    { "Icon", "arrow-left" },
+    { "Color", "secondary" },
+    { "Text", "Back to Customers" },
+    { "Style", "margin-top: 1rem;" }
+})

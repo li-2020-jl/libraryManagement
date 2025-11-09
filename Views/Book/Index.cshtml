@@ -23,7 +23,14 @@
     </div>
 </form>
 
-<a asp-action="Create" class="btn btn-secondary" style="margin-bottom: 1rem;"><i data-lucide="plus-circle"></i> Add New Book</a>
+@await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+{
+    { "ActionName", "Create" },
+    { "Icon", "plus-circle" },
+    { "Color", "secondary" },
+    { "Text", "Add New Book" },
+    { "Style", "margin-bottom: 1rem;" }
+})
 
 <div class="markdown-table-container">
     <table class="markdown-table">

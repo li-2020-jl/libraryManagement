@@ -14,6 +14,17 @@
         <span asp-validation-for="BranchName" class="text-error"></span>
     </div>
 
-    <button type="submit" class="btn btn-blue">Save</button>
-    <a href="@Url.Action("Index")" class="btn btn-secondary" style="margin-left: 0.75rem;">Cancel</a>
+    @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+    {
+        { "ButtonType", "submit" },
+        { "Color", "blue" },
+        { "Text", "Save" }
+    })
+    @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+    {
+        { "Url", Url.Action("Index") },
+        { "Color", "secondary" },
+        { "Text", "Cancel" },
+        { "Style", "margin-left: 0.75rem;" }
+    })
 </form>

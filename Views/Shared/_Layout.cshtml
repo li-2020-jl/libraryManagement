@@ -42,28 +42,49 @@
                     @if (User.Identity != null && User.Identity.IsAuthenticated)
                     {
                         <!-- My Profile Link with Username -->
-                        <a asp-controller="Customer"
-                            asp-action="Edit"
-                            asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value"
-                            asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)"
-                            class="btn btn-outline">
-                                <i data-lucide="user-circle"></i> @(User.Identity?.Name ?? User.FindFirst("email")?.Value ?? "My Profile")
-                        </a>
+                        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                        var userName = User.Identity?.Name ?? User.FindFirst("email")?.Value ?? "My Profile";
+                        
+                        @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+                        {
+                            { "Controller", "Customer" },
+                            { "ActionName", "Edit" },
+                            { "RouteId", userId },
+                            { "Icon", "user-circle" },
+                            { "Color", "outline" },
+                            { "Text", userName }
+                        })
 
-                        <a href="javascript:document.getElementById('logoutForm').submit();" class="btn btn-outline"><i data-lucide="log-out"></i> Logout</a>
+                        @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+                        {
+                            { "JsFunction", "document.getElementById('logoutForm').submit();" },
+                            { "Icon", "log-out" },
+                            { "Color", "outline" },
+                            { "Text", "Logout" }
+                        })
                         <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post" style="display: none;">
                             @Html.AntiForgeryToken()
                         </form>
                     }
                     else
                     {
-                        <a asp-controller="Account" asp-action="Register" class="btn btn-outline">
-                            <i data-lucide="user-plus"></i> Register
-                        </a>
+                        @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+                        {
+                            { "Controller", "Account" },
+                            { "ActionName", "Register" },
+                            { "Icon", "user-plus" },
+                            { "Color", "outline" },
+                            { "Text", "Register" }
+                        })
 
-                        <a asp-controller="Account" asp-action="Login" class="btn btn-blue">
-                            <i data-lucide="log-in"></i> Login
-                        </a>
+                        @await Html.PartialAsync("Components/_ActionButton", null, new ViewDataDictionary(ViewData)
+                        {
+                            { "Controller", "Account" },
+                            { "ActionName", "Login" },
+                            { "Icon", "log-in" },
+                            { "Color", "blue" },
+                            { "Text", "Login" }
+                        })
                     }
                 </div>
             </nav>
