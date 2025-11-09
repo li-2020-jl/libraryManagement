@@ -58,6 +58,9 @@ namespace libraryManagement.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("CoverImageUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("CustomerId")
                         .HasColumnType("TEXT");
 
