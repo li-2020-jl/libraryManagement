@@ -1,0 +1,90 @@
+@model List<LibraryManagement.ViewModels.BookViewModel>
+
+@{
+    Layout = "_Layout";
+    var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+}
+
+<h1><i data-lucide="book-open"></i> Book List</h1>
+
+<!-- Search -->
+<form asp-action="Index" method="get" style="margin-bottom: 1.5rem;">
+    <div style="display: flex; align-items: stretch; gap: 8px;">
+        <div style="position: relative; flex: 0 0 300px;">
+            <i data-lucide="search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #6b7280; width: 18px; height: 18px;"></i>
+            <input type="text"
+                   name="search"
+                   placeholder="Search by book title"
+                   value="@ViewBag.Search"
+                   style="padding: 8px 14px 8px 40px; border-radius: 6px; border: 1px solid #4b5563; background-color: #1f2937; color: #f9fafb; width: 100%; height: 38px; box-sizing: border-box;" />
+        </div>
+        <button type="submit" class="btn btn-outline" style="height: 38px;">Search</button>
+    </div>
+</form>
+
+<a asp-action="Create" class="btn btn-secondary" style="margin-bottom: 1rem;"><i data-lucide="plus-circle"></i> Add New Book</a>
+
+<div class="markdown-table-container">
+    <table class="markdown-table">
+        <thead>
+            <tr>
+                <th style="width: 8%;">Book ID</th>
+                <th style="width: 22%;">Title</th>
+                <th style="width: 18%;">Author</th>
+                <th style="width: 18%;">Library Branch</th>
+                <th style="width: 18%;">Status</th>
+                <th style="width: 16%;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                var isCheckedOut = !string.IsNullOrEmpty(book.CustomerId);
+
+                <tr>
+                    <td>@book.BookId</td>
+                    <td>@book.Title</td>
+                    <td>@book.AuthorName</td>
+                    <td>@book.LibraryBranchName</td>
+                    <td>
+                        @if (string.IsNullOrEmpty(book.CustomerId))
+                        {
+                            <span class="status-available">
+                                <i data-lucide="check-circle"></i> Available
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="status-checked-out">
+                                <i data-lucide="clock"></i> Checked out by @book.BorrowerName
+                            </span>
+                        }
+                    </td>
+                    <td>
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            if (!isCheckedOut)
+                            {
+                                <!-- current user borrow -->
+                                <form asp-action="Checkout" method="post" style="display: inline-block;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="bookId" value="@book.BookId" />
+                                    <button type="submit" class="btn btn-blue"><i data-lucide="book-plus"></i> Borrow</button>
+                                </form>
+                            }
+                            else if (book.CustomerId == currentUserId)
+                            {
+                                <!-- current user return -->
+                                <form asp-action="ReturnBook" method="post" style="display: inline-block;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="bookId" value="@book.BookId" />
+                                    <button type="submit" class="btn btn-warning"><i data-lucide="book-minus"></i> Return</button>
+                                </form>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

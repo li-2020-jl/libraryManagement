@@ -338,23 +338,32 @@ form [data-lucide] {
   position: relative;
   overflow: hidden;
   vertical-align: middle;
+  background-size: 200% 100%;
+  background-position: 0% 0%;
 }
 
+/* Subtle shine overlay */
 .btn::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
+  left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
   pointer-events: none;
+  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25),
               0 3px 6px rgba(0, 0, 0, 0.15);
+  background-position: 100% 0%;
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 .btn:active {
@@ -374,7 +383,7 @@ form [data-lucide] {
 
 /* PRIMARY - Blue-Purple Gradient (Highest Priority: Main CTAs like Save, Login, Borrow) */
 .btn-blue {
-  background: linear-gradient(135deg, #667eea 0%, #4f46e5 100%);
+  background: linear-gradient(135deg, #667eea 0%, #4f46e5 50%, #667eea 100%);
   color: #ffffff;
   border-color: rgba(79, 70, 229, 0.5);
   font-weight: 600;
@@ -383,18 +392,17 @@ form [data-lucide] {
 }
 
 .btn-blue:hover {
-  background: linear-gradient(135deg, #5568d3 0%, #4338ca 100%);
   box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4),
               0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
 .btn-blue:active {
-  background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%);
+  background: linear-gradient(135deg, #4338ca 0%, #3730a3 50%, #4338ca 100%);
 }
 
 /* SUCCESS - Emerald Green (Positive Actions) */
 .btn-green {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 50%, #10b981 100%);
   color: #ffffff;
   border-color: rgba(5, 150, 105, 0.5);
   font-weight: 500;
@@ -403,18 +411,17 @@ form [data-lucide] {
 }
 
 .btn-green:hover {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
   box-shadow: 0 6px 14px rgba(16, 185, 129, 0.4),
               0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn-green:active {
-  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+  background: linear-gradient(135deg, #047857 0%, #065f46 50%, #047857 100%);
 }
 
 /* WARNING - Amber Orange (Return/Caution Actions) */
 .btn-warning {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #f59e0b 100%);
   color: #ffffff;
   border-color: rgba(217, 119, 6, 0.5);
   font-weight: 500;
@@ -423,18 +430,17 @@ form [data-lucide] {
 }
 
 .btn-warning:hover {
-  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
   box-shadow: 0 6px 14px rgba(245, 158, 11, 0.4),
               0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn-warning:active {
-  background: linear-gradient(135deg, #b45309 0%, #92400e 100%);
+  background: linear-gradient(135deg, #b45309 0%, #92400e 50%, #b45309 100%);
 }
 
 /* DANGER - Red (Delete/Destructive Actions) */
 .btn-danger {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #ef4444 100%);
   color: #ffffff;
   border-color: rgba(220, 38, 38, 0.5);
   font-weight: 500;
@@ -443,18 +449,17 @@ form [data-lucide] {
 }
 
 .btn-danger:hover {
-  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
   box-shadow: 0 6px 14px rgba(239, 68, 68, 0.4),
               0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .btn-danger:active {
-  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 50%, #b91c1c 100%);
 }
 
 /* SECONDARY - Slate Gray (Lower Priority: Cancel, Back, etc) */
 .btn-secondary {
-  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  background: linear-gradient(135deg, #64748b 0%, #475569 50%, #64748b 100%);
   color: #f1f5f9;
   border-color: rgba(71, 85, 105, 0.5);
   font-weight: 400;
@@ -463,14 +468,13 @@ form [data-lucide] {
 }
 
 .btn-secondary:hover {
-  background: linear-gradient(135deg, #475569 0%, #334155 100%);
   color: #ffffff;
   box-shadow: 0 4px 10px rgba(71, 85, 105, 0.3),
               0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .btn-secondary:active {
-  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #334155 0%, #1e293b 50%, #334155 100%);
 }
 
 /* OUTLINE - Ghost Button (Lowest Priority: Tertiary actions) */
@@ -574,12 +578,18 @@ a.btn-outline:hover:visited {
 }
 
 /* ===== TABLE STYLES ===== */
+/* Table rows: Only hover transition, NO loading animations */
 .markdown-table tbody tr {
   transition: background-color 0.2s ease;
+  animation: none !important;
 }
 
 .markdown-table tbody tr:hover {
   background-color: #21262d;
+}
+
+.markdown-table tbody td {
+  animation: none !important;
 }
 
 .markdown-table thead {
