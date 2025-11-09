@@ -41,8 +41,8 @@
                         })
                     </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn @(isCurrentUser ? "btn-warning" : "btn-outline")">
-                            <i data-lucide="@(isCurrentUser ? "book-minus" : "eye")"></i> @(isCurrentUser ? "Return Books" : "View Books")
+                        <a asp-action="Details" asp-route-id="@customer.CustomerId" class="btn-table-primary @(isCurrentUser ? "purple" : "orange")">
+                            <i data-lucide="@(isCurrentUser ? "arrow-up-circle" : "eye")"></i> @(isCurrentUser ? "Return Books" : "View Books")
                         </a>
                         @if (isCurrentUser)
                         {
