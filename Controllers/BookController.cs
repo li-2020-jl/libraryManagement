@@ -34,13 +34,14 @@ namespace LibraryManagement.Controllers
             {
                 BookId = b.BookId,
                 Title = b.Title,
+                CoverImageUrl = b.CoverImageUrl,
                 AuthorId = b.AuthorId,
                 AuthorName = b.Author != null ? b.Author.Name : "Unknown",
                 LibraryBranchId = b.LibraryBranchId,
                 LibraryBranchName = b.LibraryBranch != null ? b.LibraryBranch.BranchName : "Unknown",
                 BorrowerName = b.Customer != null
                     ? (!string.IsNullOrEmpty(b.Customer.Name) ? b.Customer.Name : b.Customer.Email)
-                    : "Available",  
+                    : "Available",
                 CustomerId = b.CustomerId,
             })
             .ToListAsync();

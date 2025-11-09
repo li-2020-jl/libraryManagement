@@ -12,6 +12,9 @@ namespace LibraryManagement.Models
         [Required]
         public string? Title { get; set; }
 
+        // Book cover image URL
+        public string? CoverImageUrl { get; set; }
+
         // show who the author is
         [Required]
         public int AuthorId { get; set; }

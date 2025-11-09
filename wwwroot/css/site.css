@@ -577,6 +577,183 @@ a.btn-outline:hover:visited {
   font-weight: 500;
 }
 
+/* ===== TABLE ACTION BUTTONS ===== */
+/* Lightweight button styles for table rows - same size as regular buttons, transparent background with colored text */
+
+/* Primary action in tables (with border + colored text) */
+.btn-table-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  background: transparent;
+  border: 1.5px solid;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  line-height: 1.2;
+  margin-right: 0.5rem;
+}
+
+.btn-table-primary.blue {
+  color: #60a5fa;
+  border-color: #60a5fa;
+}
+
+.btn-table-primary.blue:hover {
+  color: #93c5fd;
+  border-color: #93c5fd;
+  background: rgba(96, 165, 250, 0.1);
+}
+
+.btn-table-primary.orange {
+  color: #fb923c;
+  border-color: #fb923c;
+}
+
+.btn-table-primary.orange:hover {
+  color: #fdba74;
+  border-color: #fdba74;
+  background: rgba(251, 146, 60, 0.1);
+}
+
+.btn-table-primary.red {
+  color: #f87171;
+  border-color: #f87171;
+}
+
+.btn-table-primary.red:hover {
+  color: #fca5a5;
+  border-color: #fca5a5;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.btn-table-primary.green {
+  color: #4ade80;
+  border-color: #4ade80;
+}
+
+.btn-table-primary.green:hover {
+  color: #86efac;
+  border-color: #86efac;
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.btn-table-primary.purple {
+  color: #c084fc;
+  border-color: #c084fc;
+}
+
+.btn-table-primary.purple:hover {
+  color: #d8b4fe;
+  border-color: #d8b4fe;
+  background: rgba(192, 132, 252, 0.1);
+}
+
+/* Secondary action in tables (text only, no border) */
+.btn-table-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  line-height: 1.2;
+  margin-right: 0.5rem;
+}
+
+.btn-table-secondary.blue {
+  color: #60a5fa;
+}
+
+.btn-table-secondary.blue:hover {
+  color: #93c5fd;
+  background: rgba(96, 165, 250, 0.1);
+}
+
+.btn-table-secondary.orange {
+  color: #fb923c;
+}
+
+.btn-table-secondary.orange:hover {
+  color: #fdba74;
+  background: rgba(251, 146, 60, 0.1);
+}
+
+.btn-table-secondary.green {
+  color: #4ade80;
+}
+
+.btn-table-secondary.green:hover {
+  color: #86efac;
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.btn-table-secondary.red {
+  color: #f87171;
+}
+
+.btn-table-secondary.red:hover {
+  color: #fca5a5;
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.btn-table-secondary.purple {
+  color: #c084fc;
+}
+
+.btn-table-secondary.purple:hover {
+  color: #d8b4fe;
+  background: rgba(192, 132, 252, 0.1);
+}
+
+/* Icons in table buttons */
+.btn-table-primary [data-lucide],
+.btn-table-secondary [data-lucide] {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
+/* ===== BOOK COVER STYLES ===== */
+.book-cover {
+  width: 48px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: block;
+}
+
+.book-cover-placeholder {
+  width: 48px;
+  height: 64px;
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.book-cover-placeholder [data-lucide] {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+}
+
 /* ===== TABLE STYLES ===== */
 /* Table rows: Only hover transition, NO loading animations */
 .markdown-table tbody tr {
