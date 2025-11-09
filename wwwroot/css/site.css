@@ -643,6 +643,17 @@ a.btn-outline:hover:visited {
   background: rgba(74, 222, 128, 0.1);
 }
 
+.btn-table-primary.purple {
+  color: #c084fc;
+  border-color: #c084fc;
+}
+
+.btn-table-primary.purple:hover {
+  color: #d8b4fe;
+  border-color: #d8b4fe;
+  background: rgba(192, 132, 252, 0.1);
+}
+
 /* Secondary action in tables (text only, no border) */
 .btn-table-secondary {
   display: inline-flex;
@@ -698,11 +709,48 @@ a.btn-outline:hover:visited {
   background: rgba(248, 113, 113, 0.1);
 }
 
+.btn-table-secondary.purple {
+  color: #c084fc;
+}
+
+.btn-table-secondary.purple:hover {
+  color: #d8b4fe;
+  background: rgba(192, 132, 252, 0.1);
+}
+
 /* Icons in table buttons */
 .btn-table-primary [data-lucide],
 .btn-table-secondary [data-lucide] {
   width: 14px;
   height: 14px;
+  margin: 0;
+}
+
+/* ===== BOOK COVER STYLES ===== */
+.book-cover {
+  width: 48px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: block;
+}
+
+.book-cover-placeholder {
+  width: 48px;
+  height: 64px;
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.book-cover-placeholder [data-lucide] {
+  width: 24px;
+  height: 24px;
   margin: 0;
 }
 
